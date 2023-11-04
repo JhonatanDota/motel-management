@@ -1,0 +1,16 @@
+version: "3.8"
+networks:
+  app:
+
+services:
+
+  backend:
+    build:
+      context: ./code
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - ./code/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - app
