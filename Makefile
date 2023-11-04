@@ -8,7 +8,8 @@ down:
 	docker-compose down
 
 setup:
-	docker-compose exec backend bash -c "php artisan migrate:fresh && php artisan db:seed"
+	docker-compose exec backend python manage.py makemigrations
+	docker-compose exec backend python manage.py migrate
 
 sh:
 	docker-compose exec backend bash

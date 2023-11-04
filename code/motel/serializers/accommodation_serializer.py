@@ -1,0 +1,8 @@
+from rest_framework import serializers
+from motel.models import Accommodation
+
+class AccommodationSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Accommodation
+        fields = ("__all__")
