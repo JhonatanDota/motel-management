@@ -13,11 +13,11 @@ class ConsumableItem(models.Model):
 
 class Accommodation(models.Model):
     room = models.ForeignKey(Room, on_delete=models.PROTECT, related_name="accommodations")
-    consumable_item = models.ManyToManyField(ConsumableItem, blank=True)
+    consumable_items = models.ManyToManyField(ConsumableItem, blank=True)
     alias = models.CharField(max_length=120)
     value = models.FloatField(null=True, blank=True)
     entry_time = models.DateTimeField()
     exit_time = models.DateTimeField()
     discount = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
-    
+    created_at = models.DateTimeField(auto_now_add=True)
