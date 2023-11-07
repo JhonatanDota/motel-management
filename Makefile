@@ -16,3 +16,6 @@ sh:
 
 sh-front:
 	docker-compose exec frontend bash
+
+test-back:
+	docker-compose run backend python manage.py test

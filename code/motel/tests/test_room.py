@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase
 from motel.enums import RoomTypeEnum
 
+from utils.factories.room_factory import RoomFactory
 
 class TestRoom(APITestCase):
     def setUp(self):
@@ -74,3 +75,12 @@ class TestRoom(APITestCase):
 
         self.assertEquals(len(response_data), 1)
         self.assertEquals(response_data["type"][0], "This field is required.")
+
+    """
+        Test Update
+    """
+    
+    def test_update(self):
+        room = RoomFactory()
+        
+        
