@@ -132,3 +132,39 @@ class TestRoom(APITestCase):
         self.assertEquals(response.status_code, 200)
 
         self.assertEquals(response.json()["type"], payload["type"])
+
+    """
+        Test Get
+    """
+
+    def test_retrieve(self):
+        room = RoomFactory()
+
+        response = self.client.get(f"{self.url}{room.id}/")
+        self.assertEquals(response.status_code, 200)
+
+        response_data = response.json()
+
+        self.assertEquals(response_data["id"], room.id)
+        self.assertEquals(response_data["number"], room.number)
+        self.assertEquals(response_data["hour_value"], room.hour_value)
+        self.assertEquals(response_data["type"], room.type)
+
+    def test_list(self):
+        TO_CREATE_QTN = 11
+        EXPECTED_PAGINATION_ITEMS = 10
+        EXPECTED_PAGES = 2
+
+        for _ in range(TO_CREATE_QTN):
+            RoomFactory()
+
+        response = self.client.get(self.url)
+        self.assertEquals(response.status_code, 200)
+
+        response_data = response.json()
+        results = response_data["results"]
+        meta = response_data["meta"]
+
+        self.assertEquals(EXPECTED_PAGINATION_ITEMS, len(results))
+        self.assertEquals(EXPECTED_PAGES, meta["pagination"]["pages"])
+        self.assertEquals(TO_CREATE_QTN, meta["pagination"]["count"])
