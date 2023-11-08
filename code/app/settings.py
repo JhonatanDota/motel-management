@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework_json_api",
     'rest_framework',
     'drf_spectacular',
+    'app',
     'motel',
 ]
 
