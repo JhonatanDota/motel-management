@@ -77,6 +77,24 @@ class TestRoom(APITestCase):
         self.assertEquals(len(response_data), 1)
         self.assertEquals(response_data["type"][0], "This field is required.")
 
+    def test_try_create_with_hour_value_bellow_zero(self):
+        payload = {
+            "number": 200,
+            "hour_value": -0.5,
+            "type": RoomTypeEnum.NORMAL,
+        }
+
+        response = self.client.post(self.url, payload)
+        self.assertEquals(response.status_code, 400)
+
+        response_data = response.json()
+
+        self.assertEquals(len(response_data), 1)
+        self.assertEquals(
+            response_data["hour_value"][0],
+            "Ensure this value is greater than or equal to 0.0.",
+        )
+
     """
         Test Update
     """
@@ -132,6 +150,24 @@ class TestRoom(APITestCase):
         self.assertEquals(response.status_code, 200)
 
         self.assertEquals(response.json()["type"], payload["type"])
+
+    def test_try_update_with_hour_value_bellow_zero(self):
+        room = RoomFactory()
+
+        payload = {
+            "hour_value": -1,
+        }
+
+        response = self.client.patch(f"{self.url}{room.id}/", payload)
+        self.assertEquals(response.status_code, 400)
+
+        response_data = response.json()
+
+        self.assertEquals(len(response_data), 1)
+        self.assertEquals(
+            response_data["hour_value"][0],
+            "Ensure this value is greater than or equal to 0.0.",
+        )
 
     """
         Test Get

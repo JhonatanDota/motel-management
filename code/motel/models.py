@@ -1,18 +1,19 @@
 from django.db import models
 from app.models import Model
 from motel.enums import RoomTypeEnum
+from django.core.validators import MinValueValidator
 
 class Room(Model):
     number = models.IntegerField()
-    hour_value = models.FloatField()
+    hour_value = models.FloatField(validators=[MinValueValidator(0.0)])
     type = models.CharField(choices=RoomTypeEnum.choices, max_length=6)
     
     def __str__(self):
-        return self.number
+        return f"{self.number} - {self.hour_value}"
 
 class ConsumableItem(Model):
     name = models.CharField(max_length=120)
-    price = models.FloatField()
+    price = models.FloatField(validators=[MinValueValidator(0.0)])
     description = models.TextField(null=True, blank=True)
     
     def __str__(self):
