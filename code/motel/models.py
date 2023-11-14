@@ -25,7 +25,7 @@ class Accommodation(Model):
     alias = models.CharField(max_length=120)
     value = models.FloatField(null=True, blank=True)
     entry_time = models.DateTimeField()
-    exit_time = models.DateTimeField()
+    exit_time = models.DateTimeField(null=True, blank=True)
     discount = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
     
