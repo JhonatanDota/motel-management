@@ -165,3 +165,5 @@ class TestConsumableItem(APITestCase):
         self.assertEquals(EXPECTED_PAGINATION_ITEMS, len(results))
         self.assertEquals(EXPECTED_PAGES, meta["pagination"]["pages"])
         self.assertEquals(TO_CREATE_QTN, meta["pagination"]["count"])
+        
+# TODO: Delete Tests
