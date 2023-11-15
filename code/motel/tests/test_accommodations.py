@@ -1,11 +1,22 @@
 from rest_framework.test import APITestCase
 from utils.factories.accommodation_factory import AccommodationFactory
-
-from django.forms.models import model_to_dict
+from utils.factories.room_factory import RoomFactory
 
 class TestAccommodation(APITestCase):
     def setUp(self):
         self.url = "/api/accommodation/"
         
-    def test_create(self):
-        pass
+    """
+        Test Create
+    """
+        
+    def test_create_with_basic_data(self):
+        
+        payload = {
+            "room": RoomFactory().id,
+            "alias": "Careca",
+            "entry_time": "2023-10-10 00:10:00"
+        }
+        
+        response = self.client.post(self.url, payload)
+        self.assertEquals(response.status_code, 201)
