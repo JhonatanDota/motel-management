@@ -6,12 +6,12 @@ services:
 
   backend:
     build:
-      context: ./code
+      context: ./backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./code:/code
+      - ./backend:/backend
     env_file:
-      - ./code/.env
+      - ./backend/.env
     ports:
       - "8000:8000"
     restart: on-failure
