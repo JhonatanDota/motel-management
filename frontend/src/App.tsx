@@ -1,7 +1,18 @@
+import { useState } from "react";
+import AppRoutes from "./AppRoutes";
+import Menu from "./components/Menu";
+
 function App() {
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
-    <div>
-      <h1 className="text-green-800">asdasdasd</h1>
+    <div className="flex">
+      <Menu open={open} setOpen={setOpen} />
+      <div
+        className={`flex flex-col m-auto w-1/2 my-4 py-6 transition-all duration-150`}
+      >
+        <AppRoutes />
+      </div>
     </div>
   );
 }
