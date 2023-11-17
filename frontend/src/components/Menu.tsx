@@ -1,3 +1,14 @@
+import MenuItem from "./MenuItem";
+
+import {
+  FaCaretRight,
+  FaCaretLeft,
+  FaHouse,
+  FaClipboardUser,
+  FaBed,
+  FaBasketShopping,
+} from "react-icons/fa6";
+
 type MenuProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -8,16 +19,35 @@ export default function Menu(props: MenuProps) {
   return (
     <div
       className={`${
-        open ? "w-20" : "w-14"
-      } flex flex-col items-center bg-[#111827] h-screen sticky top-0 px-4 py-12 transition-all duration-150`}
+        open ? "w-20" : "w-12"
+      } flex flex-col items-center bg-[#111827] h-screen sticky top-0 px-4 py-12 transition-all duration-200`}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="absolute top-2 right-0 bg-red-500"
+        className="absolute top-2 -right-4 text-3xl"
       >
-        me
+        {open ? <FaCaretLeft fill="red" /> : <FaCaretRight fill="red" />}
       </button>
-      <h1 className="text-white">Teste</h1>
+
+      <div className="flex flex-col gap-y-10 mt-8 max-w-full">
+        <MenuItem route="/" isMenuOpen={open} icon={FaHouse} title="Início" />
+
+        <MenuItem
+          route="/accommodation"
+          isMenuOpen={open}
+          icon={FaClipboardUser}
+          title="Estada"
+        />
+
+        <MenuItem route="/room" isMenuOpen={open} icon={FaBed} title="Quarto" />
+
+        <MenuItem
+          route="/consumable-item"
+          isMenuOpen={open}
+          icon={FaBasketShopping}
+          title="Item"
+        />
+      </div>
     </div>
   );
 }

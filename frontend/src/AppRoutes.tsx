@@ -7,13 +7,11 @@ import ConsumableItem from "./pages/ConsumableItem";
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/accommodation" element={<Accommodation />} />
-        <Route path="/room" element={<Room />} />
-        <Route path="/consumable-item" element={<ConsumableItem />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/accommodation" element={<Accommodation />} />
+      <Route path="/room" element={<Room />} />
+      <Route path="/consumable-item" element={<ConsumableItem />} />
+    </Routes>
   );
 }
