@@ -8,7 +8,7 @@ export default function Menu(props: MenuProps) {
   return (
     <div
       className={`${
-        open ? "w-24" : "w-16"
+        open ? "w-20" : "w-14"
       } flex flex-col items-center bg-[#111827] h-screen sticky top-0 px-4 py-12 transition-all duration-150`}
     >
       <button

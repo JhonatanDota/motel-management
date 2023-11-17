@@ -1,13 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import AddAccommodation from "./pages/AddAccommodation";
+
+import Accommodation from "./pages/Accommodation";
+import Room from "./pages/Room";
+import ConsumableItem from "./pages/ConsumableItem";
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/add-accommodation" element={<AddAccommodation />} />
+        <Route path="/accommodation" element={<Accommodation />} />
+        <Route path="/room" element={<Room />} />
+        <Route path="/consumable-item" element={<ConsumableItem />} />
       </Routes>
     </BrowserRouter>
   );

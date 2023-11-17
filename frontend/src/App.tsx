@@ -9,7 +9,7 @@ function App() {
     <div className="flex">
       <Menu open={open} setOpen={setOpen} />
       <div
-        className={`flex flex-col m-auto w-1/2 my-4 py-6 transition-all duration-150`}
+        className={`flex flex-col m-auto w-[70%] my-4 py-6 transition-all duration-150`}
       >
         <AppRoutes />
       </div>
