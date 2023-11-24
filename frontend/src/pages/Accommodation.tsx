@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import AccommodationModel from "../models/AccommodationModel";
 import AddAccommodation from "../components/accommodation/AddAccommodation";
 import Add from "../components/Add";
@@ -24,22 +25,33 @@ export default function Accommodation() {
         )}
       </button>
 
-      {openAdd && (
-        <div className="w-full">
-          <Add
-            children={
-              <AddAccommodation
-                rooms={roomDumy}
-                consumableItems={consumableItemDumy}
-              />
-            }
-          />
-        </div>
-      )}
+      <AnimatePresence>
+        {openAdd && (
+          <motion.section
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="w-full"
+          >
+            <Add
+              children={
+                <AddAccommodation
+                  rooms={roomDumy}
+                  consumableItems={consumableItemDumy}
+                />
+              }
+            />
+          </motion.section>
+        )}
+      </AnimatePresence>
 
       <div className="flex flex-col gap-3 w-full">
         {accommodationDumy.map((accommodation: AccommodationModel) => (
-          <Collapse title={accommodation.alias} children={<h1>Testando</h1>} />
+          <Collapse
+            title={accommodation.alias}
+            children={<h1 className="bg-green-400">Testando</h1>}
+          />
         ))}
       </div>
     </div>

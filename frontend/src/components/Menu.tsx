@@ -20,7 +20,7 @@ export default function Menu(props: MenuProps) {
     <div
       className={`${
         open ? "w-20" : "w-12"
-      } flex flex-col items-center bg-[#111827] h-screen sticky top-0 px-4 py-12 transition-all duration-200`}
+      } flex flex-col items-center bg-[#111827] h-screen sticky top-0 px-7 py-12 transition-all duration-200`}
     >
       <button
         onClick={() => setOpen(!open)}
