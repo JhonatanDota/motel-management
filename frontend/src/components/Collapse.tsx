@@ -21,7 +21,7 @@ export default function Collapse(props: CollapseProps) {
       <AnimatePresence>
         {
           <motion.section
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: open ? 1 : 0, height: open ? "auto" : 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}

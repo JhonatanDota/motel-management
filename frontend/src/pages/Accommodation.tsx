@@ -28,7 +28,7 @@ export default function Accommodation() {
       <AnimatePresence>
         {
           <motion.section
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: openAdd ? 1 : 0, height: openAdd ? "100%" : 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
