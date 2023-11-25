@@ -19,16 +19,17 @@ export default function Collapse(props: CollapseProps) {
         </div>
       </div>
       <AnimatePresence>
-        {open && (
+        {
           <motion.section
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: open ? 1 : 0, height: open ? "auto" : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="w-full overflow-hidden"
           >
             {children}
           </motion.section>
-        )}
+        }
       </AnimatePresence>
     </div>
   );
