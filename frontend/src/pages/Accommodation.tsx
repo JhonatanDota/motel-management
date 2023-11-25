@@ -26,13 +26,13 @@ export default function Accommodation() {
       </button>
 
       <AnimatePresence>
-        {openAdd && (
+        {
           <motion.section
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="w-full"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: openAdd ? 1 : 0, height: openAdd ? "100%" : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="w-full overflow-hidden"
           >
             <Add
               children={
@@ -43,7 +43,7 @@ export default function Accommodation() {
               }
             />
           </motion.section>
-        )}
+        }
       </AnimatePresence>
 
       <div className="flex flex-col gap-3 w-full">
