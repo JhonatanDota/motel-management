@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AccommodationModel from "../models/AccommodationModel";
+import PageContainer from "../components/pages/PageContainer";
+import PageTitle from "../components/pages/PageTitle";
 import AddAccommodation from "../components/accommodation/AddAccommodation";
 import Add from "../components/Add";
 import Collapse from "../components/Collapse";
@@ -15,8 +17,8 @@ export default function Accommodation() {
   const [openAdd, setOpenAdd] = useState<boolean>(false);
 
   return (
-    <div className="flex flex-col gap-4 items-center">
-      <h1 className="text-3xl font-bold tracking-wider">Acomodações</h1>
+    <PageContainer>
+      <PageTitle title="Acomodações" />
       <button onClick={() => setOpenAdd(!openAdd)} className="">
         {openAdd ? (
           <FaSquareMinus className="text-4xl" fill="red" />
@@ -54,6 +56,6 @@ export default function Accommodation() {
           />
         ))}
       </div>
-    </div>
+    </PageContainer>
   );
 }
