@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import AppRoutes from "./AppRoutes";
-import Menu from "./components/Menu";
+import Menu from "./components/menu/Menu";
 
 function App() {
   const [open, setOpen] = useState<boolean>(false);
