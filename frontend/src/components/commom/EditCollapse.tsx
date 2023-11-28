@@ -27,7 +27,7 @@ export default function EditCollapse(props: CollapseProps) {
         </div>
         <button
           className={`text-2xl text-white transition-transform duration-300 ${
-            isOpen ? "rotate-180" : "rotate-0"
+            isOpen ? "rotate-0" : "rotate-180"
           }`}
         >
           <FaCaretUp />
