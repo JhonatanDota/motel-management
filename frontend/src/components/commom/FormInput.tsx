@@ -13,6 +13,7 @@ export default function FormInput(props: FormInputProps) {
         className="rounded-md bg-gray-200 text-black p-4"
         type="text"
         name={name}
+        autoComplete="off"
       />
     </div>
   );

@@ -5,7 +5,7 @@ import PageTitle from "../components/pages/PageTitle";
 import HandleAddButton from "../components/commom/HandleAddButton";
 import DropDownAnimation from "../components/commom/DropDownAnimation";
 import AddAccommodation from "../components/accommodation/AddAccommodation";
-import Add from "../components/Add";
+import AddContainer from "../components/commom/AddContainer";
 import EditCollapse from "../components/commom/EditCollapse";
 
 import accommodationDumy from "../data/accommodationDumy";
@@ -20,12 +20,12 @@ export default function Accommodation() {
       <PageTitle title="Acomodações" />
       <HandleAddButton isOpen={openAdd} setIsOpen={setOpenAdd} />
       <DropDownAnimation isOpen={openAdd} heightValue="100%">
-        <Add>
+        <AddContainer>
           <AddAccommodation
             rooms={roomDumy}
             consumableItems={consumableItemDumy}
           />
-        </Add>
+        </AddContainer>
       </DropDownAnimation>
 
       <div className="flex flex-col gap-3 w-full">

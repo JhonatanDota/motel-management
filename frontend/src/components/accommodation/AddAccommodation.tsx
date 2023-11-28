@@ -12,7 +12,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
   const { rooms, consumableItems } = props;
 
   return (
-    <div className="flex flex-col gap-3">
+    <>
       <FormSelect
         label="Quarto"
         options={
@@ -36,6 +36,6 @@ export default function AddAccommodation(props: AddAccommodationProps) {
           </>
         }
       />
-    </div>
+    </>
   );
 }
