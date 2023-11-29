@@ -1,4 +1,5 @@
 from rest_framework.test import APITestCase
+from motel.models import ConsumableItem
 from utils.factories.consumable_item_factory import ConsumableItemFactory
 from utils.functions.generate_file import generate_image
 
@@ -126,6 +127,22 @@ class TestConsumableItem(APITestCase):
         self.assertEquals(response.status_code, 200)
 
         self.assertEquals(response.json()["description"], payload["description"])
+
+    def test_update_image(self):
+        item = ConsumableItemFactory()
+
+        self.assertFalse(bool(item.image))
+
+        payload = {"image": generate_image()}
+
+        response = self.client.patch(f"{self.url}{item.id}/", payload)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertIsNotNone(response.json()["image"])
+
+        item_from_db = ConsumableItem.objects.get(pk=item.id)
+
+        self.assertTrue(bool(item_from_db.image))
 
     """
         Test Get
