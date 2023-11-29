@@ -1,5 +1,6 @@
 from rest_framework.test import APITestCase
 from utils.factories.consumable_item_factory import ConsumableItemFactory
+from utils.functions.generate_file import generate_image
 
 
 class TestConsumableItem(APITestCase):
@@ -15,6 +16,7 @@ class TestConsumableItem(APITestCase):
             "name": "Brahma",
             "price": 7.50,
             "description": "Trincando de gelada",
+            "image": generate_image(),
         }
 
         response = self.client.post(self.url, payload)
@@ -26,6 +28,7 @@ class TestConsumableItem(APITestCase):
         self.assertEquals(response_data["name"], payload["name"])
         self.assertEquals(response_data["price"], payload["price"])
         self.assertEquals(response_data["description"], payload["description"])
+        self.assertIsNotNone(response_data["image"])
 
     def test_create_without_description(self):
         payload = {
@@ -93,41 +96,35 @@ class TestConsumableItem(APITestCase):
         self.assertEquals(response_data["name"], payload["name"])
         self.assertEquals(response_data["price"], payload["price"])
         self.assertEquals(response_data["description"], payload["description"])
-        
+
     def test_update_name(self):
         item = ConsumableItemFactory(name="First Name")
-        
-        payload = {
-            "name": "Another Name"
-        }
-        
+
+        payload = {"name": "Another Name"}
+
         response = self.client.patch(f"{self.url}{item.id}/", payload)
         self.assertEquals(response.status_code, 200)
-        
+
         self.assertEquals(response.json()["name"], payload["name"])
-        
+
     def test_update_price(self):
         item = ConsumableItemFactory(price=20)
-        
-        payload = {
-            "price": 39.9
-        }
-        
+
+        payload = {"price": 39.9}
+
         response = self.client.patch(f"{self.url}{item.id}/", payload)
         self.assertEquals(response.status_code, 200)
-        
+
         self.assertEquals(response.json()["price"], payload["price"])
-        
+
     def test_update_description(self):
         item = ConsumableItemFactory(description="Simple Description")
-        
-        payload = {
-            "description": "Full Description"
-        }
-        
+
+        payload = {"description": "Full Description"}
+
         response = self.client.patch(f"{self.url}{item.id}/", payload)
         self.assertEquals(response.status_code, 200)
-        
+
         self.assertEquals(response.json()["description"], payload["description"])
 
     """
@@ -146,6 +143,7 @@ class TestConsumableItem(APITestCase):
         self.assertEquals(response_data["name"], consumable_item.name)
         self.assertEquals(response_data["price"], consumable_item.price)
         self.assertEquals(response_data["description"], consumable_item.description)
+        self.assertTrue("image" in response_data)
 
     def test_list(self):
         TO_CREATE_QTN = 11
@@ -165,5 +163,6 @@ class TestConsumableItem(APITestCase):
         self.assertEquals(EXPECTED_PAGINATION_ITEMS, len(results))
         self.assertEquals(EXPECTED_PAGES, meta["pagination"]["pages"])
         self.assertEquals(TO_CREATE_QTN, meta["pagination"]["count"])
-        
+
+
 # TODO: Delete Tests

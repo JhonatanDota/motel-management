@@ -10,4 +10,5 @@ class ConsumableItemSerializer(serializers.ModelSerializer):
             "name",
             "price",
             "description",
+            "image",
         ]

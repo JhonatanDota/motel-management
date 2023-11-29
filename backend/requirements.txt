@@ -1,6 +1,7 @@
 asgiref==3.7.2
 attrs==23.1.0
 Django==4.0
+django-cleanup==8.0.0
 djangorestframework==3.14.0
 djangorestframework-jsonapi==6.1.0
 drf-spectacular==0.26.5
@@ -9,6 +10,7 @@ Faker==19.13.0
 inflection==0.5.1
 jsonschema==4.19.2
 jsonschema-specifications==2023.7.1
+Pillow==10.1.0
 python-dateutil==2.8.2
 pytz==2023.3.post1
 PyYAML==6.0.1

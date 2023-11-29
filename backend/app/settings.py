@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'app',
     'motel',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,12 @@ DATABASES = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Local Media
+# https://docs.djangoproject.com/en/4.2/topics/files/
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
