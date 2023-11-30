@@ -4,7 +4,7 @@ type FormInputProps = {
   setValue: (value: string) => void;
 };
 
-export default function FormInput(props: FormInputProps) {
+export default function FormTextInput(props: FormInputProps) {
   const { label, value, setValue } = props;
 
   return (

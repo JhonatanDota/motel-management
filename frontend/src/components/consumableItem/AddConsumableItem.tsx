@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import FormInput from "../commom/FormInput";
+import FormTextInput from "../commom/FormTextInput";
 import FormImage from "../commom/FormImage";
 import { addConsumableItem } from "../../requests/ConsumableItemRequests";
 import { MIN_NAME_LENGTH } from "../../validations/consumableItemValidations";
@@ -19,16 +19,16 @@ export default function AddConsumableItem() {
       return false;
     }
 
-    
+
     return false;
   }
 
   return (
     <>
       <Toaster position="top-right"/>
-      <FormInput label="Nome" value={name} setValue={setName} />
-      <FormInput label="Preço" value={price} setValue={setPrice} />
-      <FormInput
+      <FormTextInput label="Nome" value={name} setValue={setName} />
+      <FormTextInput label="Preço" value={price} setValue={setPrice} />
+      <FormTextInput
         label="Descrição"
         value={description}
         setValue={setDescription}

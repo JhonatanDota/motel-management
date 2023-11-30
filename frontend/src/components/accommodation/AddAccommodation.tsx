@@ -1,7 +1,7 @@
 import ConsumableItemModel from "../../models/ConsumableItemModel";
 import RoomModel from "../../models/RoomModel";
 import FormSelect from "../commom/FormSelect";
-import FormInput from "../commom/FormInput";
+import FormTextInput from "../commom/FormTextInput";
 
 type AddAccommodationProps = {
   rooms: RoomModel[];
@@ -24,7 +24,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
         }
       />
 
-      {/* <FormInput label="Apelido" /> */}
+      {/* <FormTextInput label="Apelido" /> */}
 
       <FormSelect
         label="Consumíveis"
