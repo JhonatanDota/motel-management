@@ -11,7 +11,7 @@ export default function FormInput(props: FormInputProps) {
     <div className="flex flex-col gap-3">
       <label className="font-bold">{label}</label>
       <input
-        className="rounded-md bg-gray-200 text-black p-4"
+        className="rounded-md bg-gray-200 text-black p-4 outline-none"
         type="text"
         autoComplete="off"
         value={value}

@@ -1,0 +1,1 @@
+export const MIN_NAME_LENGTH: number = 3;

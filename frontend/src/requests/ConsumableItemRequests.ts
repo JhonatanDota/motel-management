@@ -5,6 +5,10 @@ import ConsumableItemModel from "../models/ConsumableItemModel";
 
 const CONSUMABLE_ITEMS_URL = `${API_BASE_URL}consumable-items/`;
 
+export async function addConsumableItem(data: ConsumableItemModel){
+  console.log(data);
+}
+
 export async function getConsumableItems(): Promise<
   AxiosResponse<ApiResponse<ConsumableItemModel>>
 > {
