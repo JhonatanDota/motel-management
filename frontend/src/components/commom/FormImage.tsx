@@ -1,10 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { PERMITTED_EXTENSIONS } from "../../constants";
 
-export default function FormImage() {
-  const PERMITTED_EXTENSIONS = ["png", "jpg", "jpeg"];
+type FormImageProps = {
+  image: File | null;
+  setImage: (file: File | null) => void;
+};
 
-  const [image, setImage] = useState<File | null>();
+export default function FormImage(props: FormImageProps) {
+  const { image, setImage } = props;
 
   function extractExtension(rawExtension: string): string {
     const split = rawExtension.split("/");
@@ -33,10 +37,10 @@ export default function FormImage() {
 
       const extension: string = extractExtension(file.type);
 
-      if (!checkExtensionIsValid(extension)) {
+      if (checkExtensionIsValid(extension) === false) {
         event.target.value = "";
-        setImage(null);
-        return;
+        removeImage();
+        return; //TODO: PUT TOAST
       }
 
       setImage(file);

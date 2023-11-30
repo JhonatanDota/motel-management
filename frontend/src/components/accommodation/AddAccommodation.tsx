@@ -24,7 +24,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
         }
       />
 
-      <FormInput label="Apelido" name="alias" />
+      {/* <FormInput label="Apelido" /> */}
 
       <FormSelect
         label="Consumíveis"

@@ -1,10 +1,11 @@
 type FormInputProps = {
   label: string;
-  name: string;
+  value: string;
+  setValue: (value: string) => void;
 };
 
 export default function FormInput(props: FormInputProps) {
-  const { label, name } = props;
+  const { label, value, setValue } = props;
 
   return (
     <div className="flex flex-col gap-3">
@@ -12,8 +13,9 @@ export default function FormInput(props: FormInputProps) {
       <input
         className="rounded-md bg-gray-200 text-black p-4"
         type="text"
-        name={name}
         autoComplete="off"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
       />
     </div>
   );

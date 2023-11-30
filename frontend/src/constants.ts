@@ -1,0 +1,1 @@
+export const PERMITTED_EXTENSIONS: string[] = ["png", "jpg", "jpeg"];
