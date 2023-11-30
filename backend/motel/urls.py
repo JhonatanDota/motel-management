@@ -5,11 +5,11 @@ from motel.views import AccommodationViewSet, ConsumableItemViewSet, RoomViewSet
 
 router = DefaultRouter()
 
-router.register(r"accommodation", AccommodationViewSet, basename="accommodation")
+router.register(r"accommodations", AccommodationViewSet, basename="accommodations")
 
-router.register(r"consumable-item", ConsumableItemViewSet, basename="consumable-item")
+router.register(r"consumable-items", ConsumableItemViewSet, basename="consumable-items")
 
-router.register(r"room", RoomViewSet, basename="room")
+router.register(r"rooms", RoomViewSet, basename="rooms")
 
 urlpatterns = [
     path("", include(router.urls)),

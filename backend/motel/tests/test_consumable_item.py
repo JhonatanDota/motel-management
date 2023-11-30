@@ -6,7 +6,7 @@ from utils.functions.generate_file import generate_image
 
 class TestConsumableItem(APITestCase):
     def setUp(self):
-        self.url = "/api/consumable-item/"
+        self.url = "/api/consumable-items/"
 
     """
         Test Create

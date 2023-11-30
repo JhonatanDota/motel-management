@@ -4,7 +4,7 @@ from utils.factories.room_factory import RoomFactory
 
 class TestAccommodation(APITestCase):
     def setUp(self):
-        self.url = "/api/accommodation/"
+        self.url = "/api/accommodations/"
         
     """
         Test Create
