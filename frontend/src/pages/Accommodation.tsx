@@ -6,6 +6,7 @@ import HandleAddButton from "../components/commom/HandleAddButton";
 import DropDownAnimation from "../components/commom/DropDownAnimation";
 import AddAccommodation from "../components/accommodation/AddAccommodation";
 import AddContainer from "../components/commom/AddContainer";
+import EditContainer from "../components/commom/EditContainer";
 import EditCollapse from "../components/commom/EditCollapse";
 
 import accommodationDumy from "../data/accommodationDumy";
@@ -28,13 +29,13 @@ export default function Accommodation() {
         </AddContainer>
       </DropDownAnimation>
 
-      <div className="flex flex-col gap-3 w-full">
+      <EditContainer>
         {accommodationDumy.map((accommodation: AccommodationModel) => (
           <EditCollapse title={accommodation.alias}>
             <h1 className="bg-green-400">Testando</h1>
           </EditCollapse>
         ))}
-      </div>
+      </EditContainer>
     </PageContainer>
   );
 }
