@@ -3,7 +3,7 @@ export default interface ConsumableItemModel {
   name: string;
   price: number;
   description?: string;
-  image?: File;
+  image?: File | string;
 }
 
-export type ConsumableItemAddModel = Omit<ConsumableItemModel, "id">; 
+export type ConsumableItemAddModel = Omit<ConsumableItemModel, "id">;

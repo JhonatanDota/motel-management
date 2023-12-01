@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularRedocView,
@@ -36,4 +38,4 @@ urlpatterns = [
     ),
     path("admin/", admin.site.urls),
     path("api/", include("motel.urls"), name="motel"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
