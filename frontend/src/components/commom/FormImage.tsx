@@ -3,8 +3,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import { PERMITTED_EXTENSIONS } from "../../constants";
 
 type FormImageProps = {
-  image: File | null;
-  setImage: (file: File | null) => void;
+  image?: File;
+  setImage: (file?: File) => void;
 };
 
 export default function FormImage(props: FormImageProps) {
@@ -26,7 +26,7 @@ export default function FormImage(props: FormImageProps) {
   }
 
   function removeImage(): void {
-    setImage(null);
+    setImage();
   }
 
   function handleChangeImage(event: ChangeEvent<HTMLInputElement>): void {
