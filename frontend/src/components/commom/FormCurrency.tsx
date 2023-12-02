@@ -2,6 +2,7 @@ import CurrencyInput from "react-currency-input-field";
 
 type FormCurrencyProps = {
   label: string;
+  value: number;
   setValue: (value: number) => void;
 };
 
@@ -12,7 +13,7 @@ type CurrencyInputOnChangeValues = {
 };
 
 export default function FormCurrency(props: FormCurrencyProps) {
-  const { label, setValue } = props;
+  const { label, value, setValue } = props;
 
   function handleValueChange(values: CurrencyInputOnChangeValues): void {
     const rawValue: number | null = values.float;
@@ -24,8 +25,8 @@ export default function FormCurrency(props: FormCurrencyProps) {
       <label className="font-bold">{label}</label>
       <CurrencyInput
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}
-        className="rounded-md bg-gray-200 text-black p-4 outline-none"
-        defaultValue={0}
+        className="rounded-md bg-gray-200 text-black p-3 outline-none"
+        defaultValue={value}
         onValueChange={(_, __, values) =>
           values != undefined ? handleValueChange(values) : null
         }

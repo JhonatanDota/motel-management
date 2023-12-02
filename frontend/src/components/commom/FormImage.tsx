@@ -1,14 +1,15 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useRef } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { PERMITTED_EXTENSIONS } from "../../constants";
 
 type FormImageProps = {
-  image?: File;
+  image?: File | string;
   setImage: (file?: File) => void;
 };
 
 export default function FormImage(props: FormImageProps) {
   const { image, setImage } = props;
+  const inputRef = useRef<HTMLInputElement>(null);
 
   function extractExtension(rawExtension: string): string {
     const split = rawExtension.split("/");
@@ -51,14 +52,14 @@ export default function FormImage(props: FormImageProps) {
     <div className="flex flex-col gap-3">
       <div className="flex gap-y-4 justify-around">
         <input
-          id="input-file"
+          ref={inputRef}
           className="hidden"
           type="file"
           accept="image/*"
           onChange={handleChangeImage}
         />
         <label
-          htmlFor="input-file"
+          onClick={() => inputRef.current?.click()}
           className="cursor-pointer text-center rounded-md font-bold p-4 text-white bg-[#111827]"
         >
           {image ? "Trocar imagem" : "Selecionar Imagem"}
@@ -77,7 +78,7 @@ export default function FormImage(props: FormImageProps) {
       {image && (
         <img
           className="w-full h-36"
-          src={URL.createObjectURL(image)}
+          src={typeof image === "string" ? image : URL.createObjectURL(image)}
           alt="preview"
         />
       )}

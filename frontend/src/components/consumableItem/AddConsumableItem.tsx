@@ -56,7 +56,7 @@ export default function AddConsumableItem() {
     <>
       <Toaster position="top-right" />
       <FormTextInput label="Nome" value={name} setValue={setName} />
-      <FormCurrency label="Preço" setValue={setPrice} />
+      <FormCurrency label="Preço" value={price} setValue={setPrice} />
       <FormTextInput
         label="Descrição"
         value={description}

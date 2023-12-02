@@ -9,6 +9,9 @@ import AddContainer from "../components/commom/AddContainer";
 import AddConsumableItem from "../components/consumableItem/AddConsumableItem";
 import EditContainer from "../components/commom/EditContainer";
 import EditCollapse from "../components/commom/EditCollapse";
+import EditContent from "../components/commom/EditContent";
+import EditConsumableItem from "../components/consumableItem/EditConsumableItem";
+
 import { getConsumableItems } from "../requests/ConsumableItemRequests";
 
 export default function ConsumableItem() {
@@ -43,7 +46,11 @@ export default function ConsumableItem() {
       <EditContainer>
         {consumableItems.map((consumableItem: ConsumableItemModel) => (
           <EditCollapse title={consumableItem.name}>
-            <h1 className="bg-green-400">Testando</h1>
+            <EditContainer>
+              <EditContent>
+                <EditConsumableItem consumableItem={consumableItem} />
+              </EditContent>
+            </EditContainer>
           </EditCollapse>
         ))}
       </EditContainer>
