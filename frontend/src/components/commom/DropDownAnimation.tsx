@@ -14,13 +14,12 @@ export default function DropDownAnimation(props: DropDownAnimationProps) {
     <AnimatePresence>
       {
         <motion.section
-          initial={{ opacity: 0, height: 0 }}
+          initial={{ height: 0 }}
           animate={{
-            opacity: isOpen ? 1 : 0,
             height: isOpen ? heightValue : 0,
           }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          exit={{ height: 0 }}
+          transition={{ duration: 0.4 }}
           className="w-full overflow-hidden"
         >
           {children}
