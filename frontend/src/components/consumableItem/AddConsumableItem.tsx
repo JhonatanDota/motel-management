@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import FormTextInput from "../commom/FormTextInput";
 import FormImage from "../commom/FormImage";
 import FormCurrency from "../commom/FormCurrency";
@@ -14,13 +14,20 @@ export default function AddConsumableItem() {
   const [price, setPrice] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<File>();
+  const [isAdding, setIsAdding] = useState<boolean>(false);
 
   async function add(data: ConsumableItemWithoutIdModel) {
+    setIsAdding(true);
+
     try {
       const response = await addConsumableItem(data);
-      console.log(response);
+
+      resetData();
+      toast.success("Item adicionado !");
     } catch {
       //TODO: Make tratatives
+    } finally {
+      setIsAdding(false);
     }
   }
 
@@ -40,6 +47,13 @@ export default function AddConsumableItem() {
     add(data);
   }
 
+  function resetData(): void {
+    setName("");
+    setPrice(0);
+    setDescription("");
+    setImage(undefined);
+  }
+
   return (
     <>
       <Toaster position="top-right" />
@@ -55,6 +69,7 @@ export default function AddConsumableItem() {
         content={<FaCirclePlus fill="green" />}
         classes="m-auto text-4xl"
         onClick={handleAdd}
+        disabled={isAdding}
       />
     </>
   );

@@ -1,6 +1,6 @@
 type FormInputProps = {
   label: string;
-  value: string;
+  value: string | undefined;
   setValue: (value: string) => void;
 };
 

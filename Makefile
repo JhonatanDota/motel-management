@@ -11,7 +11,7 @@ setup:
 	docker-compose exec backend python manage.py makemigrations
 	docker-compose exec backend python manage.py migrate
 
-reset:
+reset-db:
 	docker-compose exec backend rm -f db.sqlite3
 	@make setup
 

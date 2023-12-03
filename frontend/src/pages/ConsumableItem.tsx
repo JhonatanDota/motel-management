@@ -34,6 +34,8 @@ export default function ConsumableItem() {
     fetchConsumableItems();
   }, []);
 
+  function onAdd() {}
+
   return (
     <PageContainer>
       <PageTitle title="Consumíveis" />

@@ -17,7 +17,7 @@ class Room(Model):
 class ConsumableItem(Model):
     name = models.CharField(max_length=120)
     price = models.FloatField(validators=[MinValueValidator(0.0)])
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True)
     image = models.ImageField(
         upload_to=set_consumable_item_path,
         null=True,
