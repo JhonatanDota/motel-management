@@ -1,5 +1,4 @@
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import FormTextInput from "../commom/FormTextInput";
 import FormImage from "../commom/FormImage";
 import FormCurrency from "../commom/FormCurrency";
@@ -9,7 +8,13 @@ import ConfirmActionButton from "../commom/ConfirmActionButton";
 import { FaCirclePlus } from "react-icons/fa6";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
 
-export default function AddConsumableItem() {
+type AddConsumableItemProps = {
+  onAdd: () => void;
+};
+
+export default function AddConsumableItem(props: AddConsumableItemProps) {
+  const { onAdd } = props;
+
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
@@ -23,7 +28,7 @@ export default function AddConsumableItem() {
       const response = await addConsumableItem(data);
 
       resetData();
-      toast.success("Item adicionado !");
+      onAdd();
     } catch {
       //TODO: Make tratatives
     } finally {
@@ -49,14 +54,13 @@ export default function AddConsumableItem() {
 
   function resetData(): void {
     setName("");
-    setPrice(0);
+    setPrice(0); //TODO: Fix reset price
     setDescription("");
     setImage(undefined);
   }
 
   return (
     <>
-      <Toaster position="top-right" />
       <FormTextInput label="Nome" value={name} setValue={setName} />
       <FormCurrency label="Preço" value={price} setValue={setPrice} />
       <FormTextInput

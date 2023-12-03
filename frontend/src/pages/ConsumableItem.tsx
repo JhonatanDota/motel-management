@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 import ConsumableItemModel from "../models/ConsumableItemModel";
 import PageContainer from "../components/pages/PageContainer";
@@ -34,28 +35,35 @@ export default function ConsumableItem() {
     fetchConsumableItems();
   }, []);
 
-  function onAdd() {}
+  function onAdd() {
+    setOpenAdd(false);
+    fetchConsumableItems();
+    toast.success("Item adicionado !");
+  }
 
   return (
-    <PageContainer>
-      <PageTitle title="Consumíveis" />
-      <HandleAddButton isOpen={openAdd} setIsOpen={setOpenAdd} />
-      <DropDownAnimation isOpen={openAdd} heightValue="100%">
-        <AddContainer>
-          <AddConsumableItem />
-        </AddContainer>
-      </DropDownAnimation>
-      <EditContainer>
-        {consumableItems.map((consumableItem: ConsumableItemModel) => (
-          <EditCollapse title={consumableItem.name}>
-            <EditContainer>
-              <EditContent>
-                <EditConsumableItem consumableItem={consumableItem} />
-              </EditContent>
-            </EditContainer>
-          </EditCollapse>
-        ))}
-      </EditContainer>
-    </PageContainer>
+    <>
+      <Toaster position="top-right" />
+      <PageContainer>
+        <PageTitle title="Consumíveis" />
+        <HandleAddButton isOpen={openAdd} setIsOpen={setOpenAdd} />
+        <DropDownAnimation isOpen={openAdd} heightValue="100%">
+          <AddContainer>
+            <AddConsumableItem onAdd={onAdd} />
+          </AddContainer>
+        </DropDownAnimation>
+        <EditContainer>
+          {consumableItems.map((consumableItem: ConsumableItemModel) => (
+            <EditCollapse title={consumableItem.name}>
+              <EditContainer>
+                <EditContent>
+                  <EditConsumableItem consumableItem={consumableItem} />
+                </EditContent>
+              </EditContainer>
+            </EditCollapse>
+          ))}
+        </EditContainer>
+      </PageContainer>
+    </>
   );
 }

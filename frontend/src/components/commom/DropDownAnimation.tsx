@@ -20,7 +20,7 @@ export default function DropDownAnimation(props: DropDownAnimationProps) {
             height: isOpen ? heightValue : 0,
           }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5 }}
           className="w-full overflow-hidden"
         >
           {children}
