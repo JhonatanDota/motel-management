@@ -14,9 +14,11 @@ import EditContent from "../components/commom/EditContent";
 import EditConsumableItem from "../components/consumableItem/EditConsumableItem";
 
 import { getConsumableItems } from "../requests/ConsumableItemRequests";
+import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton";
 
 export default function ConsumableItem() {
   const [openAdd, setOpenAdd] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(true);
 
   const [consumableItems, setConsumableItems] = useState<ConsumableItemModel[]>(
     []
@@ -28,6 +30,8 @@ export default function ConsumableItem() {
       setConsumableItems(response.data.results);
     } catch {
       //TODO: Make tratatives
+    } finally {
+      setIsFetching(false);
     }
   }
 
@@ -53,15 +57,19 @@ export default function ConsumableItem() {
           </AddContainer>
         </DropDownAnimation>
         <EditContainer>
-          {consumableItems.map((consumableItem: ConsumableItemModel) => (
-            <EditCollapse title={consumableItem.name}>
-              <EditContainer>
-                <EditContent>
-                  <EditConsumableItem consumableItem={consumableItem} />
-                </EditContent>
-              </EditContainer>
-            </EditCollapse>
-          ))}
+          {isFetching ? (
+            <EditContainerSkeleton />
+          ) : (
+            consumableItems.map((consumableItem: ConsumableItemModel) => (
+              <EditCollapse title={consumableItem.name}>
+                <EditContainer>
+                  <EditContent>
+                    <EditConsumableItem consumableItem={consumableItem} />
+                  </EditContent>
+                </EditContainer>
+              </EditCollapse>
+            ))
+          )}
         </EditContainer>
       </PageContainer>
     </>
