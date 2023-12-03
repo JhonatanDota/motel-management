@@ -6,4 +6,4 @@ export default interface ConsumableItemModel {
   image?: File | string;
 }
 
-export type ConsumableItemAddModel = Omit<ConsumableItemModel, "id">;
+export type ConsumableItemWithoutIdModel = Omit<ConsumableItemModel, "id">;

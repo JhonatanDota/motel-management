@@ -9,7 +9,7 @@ export default function FormTextInput(props: FormInputProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <label className="font-bold">{label}</label>
+      <label className="text-lg font-bold">{label}</label>
       <input
         className="rounded-md bg-gray-200 text-black p-3 outline-none"
         type="text"

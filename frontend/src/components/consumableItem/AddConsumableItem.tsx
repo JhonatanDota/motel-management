@@ -1,14 +1,13 @@
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import FormTextInput from "../commom/FormTextInput";
 import FormImage from "../commom/FormImage";
 import FormCurrency from "../commom/FormCurrency";
 import { addConsumableItem } from "../../requests/ConsumableItemRequests";
-import {
-  MIN_NAME_LENGTH,
-  MIN_PRICE_VALUE,
-} from "../../validations/consumableItemValidations";
-import { ConsumableItemAddModel } from "../../models/ConsumableItemModel";
+import { ConsumableItemWithoutIdModel } from "../../models/ConsumableItemModel";
+import ConfirmActionButton from "../commom/ConfirmActionButton";
+import { FaCirclePlus } from "react-icons/fa6";
+import ConsumableItemValidations from "../../validations/consumableItemValidations";
 
 export default function AddConsumableItem() {
   const [name, setName] = useState<string>("");
@@ -16,7 +15,7 @@ export default function AddConsumableItem() {
   const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<File>();
 
-  async function add(data: ConsumableItemAddModel) {
+  async function add(data: ConsumableItemWithoutIdModel) {
     try {
       const response = await addConsumableItem(data);
       console.log(response);
@@ -26,30 +25,19 @@ export default function AddConsumableItem() {
   }
 
   function handleAdd(): void {
-    if (validateData() === false) return;
-
-    const data: ConsumableItemAddModel = {
+    const data: ConsumableItemWithoutIdModel = {
       name: name,
       price: price,
       description: description,
       image: image,
     };
 
+    const validator: ConsumableItemValidations = new ConsumableItemValidations(
+      data
+    );
+    if (validator.validateData() === false) return;
+
     add(data);
-  }
-
-  function validateData(): boolean {
-    if (name.length < MIN_NAME_LENGTH) {
-      toast.error(`O nome deve ter no mínimo ${MIN_NAME_LENGTH} letras.`);
-      return false;
-    }
-
-    if (price < MIN_PRICE_VALUE) {
-      toast.error(`O preço deve ser de no mínimo R$ ${MIN_PRICE_VALUE}.`);
-      return false;
-    }
-
-    return true;
   }
 
   return (
@@ -63,7 +51,11 @@ export default function AddConsumableItem() {
         setValue={setDescription}
       />
       <FormImage image={image} setImage={setImage} />
-      <button onClick={handleAdd}>Adicionar</button>
+      <ConfirmActionButton
+        content={<FaCirclePlus fill="green" />}
+        classes="m-auto text-4xl"
+        onClick={handleAdd}
+      />
     </>
   );
 }
