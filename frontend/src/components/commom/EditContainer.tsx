@@ -7,5 +7,5 @@ type EditProps = {
 export default function EditContainer(props: EditProps) {
   const { children } = props;
 
-  return <div className="flex flex-col gap-3 w-full">{children}</div>;
+  return <div className="flex flex-col gap-3 md:gap-7 w-full">{children}</div>;
 }

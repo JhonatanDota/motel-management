@@ -10,12 +10,8 @@ export default function HandleAddButton(props: HandleAddButtonProps) {
   const { isOpen, setIsOpen } = props;
 
   return (
-    <button onClick={() => setIsOpen(!isOpen)} className="">
-      {isOpen ? (
-        <FaSquareMinus className="text-4xl" fill="red" />
-      ) : (
-        <FaSquarePlus className="text-4xl" fill="green" />
-      )}
+    <button onClick={() => setIsOpen(!isOpen)} className="text-4xl md:text-5xl">
+      {isOpen ? <FaSquareMinus fill="red" /> : <FaSquarePlus fill="green" />}
     </button>
   );
 }

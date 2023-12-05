@@ -71,7 +71,7 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
       <FormImage image={image} setImage={setImage} />
       <ConfirmActionButton
         content={<FaCirclePlus fill="green" />}
-        classes="m-auto text-4xl"
+        classes="mx-auto mt-6 text-4xl md:text-6xl"
         onClick={handleAdd}
         disabled={isAdding}
       />

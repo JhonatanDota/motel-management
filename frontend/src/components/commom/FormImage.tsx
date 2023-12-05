@@ -33,7 +33,7 @@ export default function FormImage(props: FormImageProps) {
   function handleChangeImage(event: ChangeEvent<HTMLInputElement>): void {
     const files: FileList | null = event.target.files;
 
-    if (files != null && checkHaveFile(files)) {
+    if (files != null && checkHaveFile(files)) { //TODO: ACCEPT SVG IMAGES
       const file: File = files[0];
 
       const extension: string = extractExtension(file.type);
@@ -50,6 +50,14 @@ export default function FormImage(props: FormImageProps) {
 
   return (
     <div className="flex flex-col gap-3">
+      {image && (
+        <img
+          className="w-full h-52 md:h-72 object-contain my-4"
+          src={typeof image === "string" ? image : URL.createObjectURL(image)}
+          alt="preview"
+        />
+      )}
+
       <div className="flex gap-y-4 justify-around">
         <input
           ref={inputRef}
@@ -60,7 +68,7 @@ export default function FormImage(props: FormImageProps) {
         />
         <label
           onClick={() => inputRef.current?.click()}
-          className="cursor-pointer text-center rounded-md font-bold p-4 text-white bg-[#111827]"
+          className="text-base md:text-2xl cursor-pointer text-center rounded-md font-bold p-4 md:p-6 text-white bg-[#111827]"
         >
           {image ? "Trocar imagem" : "Selecionar Imagem"}
         </label>
@@ -68,20 +76,12 @@ export default function FormImage(props: FormImageProps) {
         {image && (
           <button
             onClick={removeImage}
-            className="text-2xl bg-black p-3 rounded-md"
+            className="text-2xl md:text-3xl bg-black p-3 md:px-9 rounded-md"
           >
             <FaTrashAlt fill="white" />
           </button>
         )}
       </div>
-
-      {image && (
-        <img
-          className="w-full h-36"
-          src={typeof image === "string" ? image : URL.createObjectURL(image)}
-          alt="preview"
-        />
-      )}
     </div>
   );
 }

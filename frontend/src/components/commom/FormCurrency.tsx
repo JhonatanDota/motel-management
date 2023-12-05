@@ -21,11 +21,11 @@ export default function FormCurrency(props: FormCurrencyProps) {
   }
 
   return (
-    <div className="flex flex-col gap-3">
-      <label className="text-lg font-bold">{label}</label>
+    <div className="flex flex-col gap-3 md:gap-5">
+      <label className="text-lg md:text-2xl font-bold">{label}</label>
       <CurrencyInput
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}
-        className="rounded-md bg-gray-200 text-black p-3 outline-none"
+        className="text-base md:text-2xl rounded-md bg-gray-200 text-black p-3 md:p-6 outline-none"
         defaultValue={value}
         onValueChange={(_, __, values) =>
           values != undefined ? handleValueChange(values) : null

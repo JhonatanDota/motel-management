@@ -14,7 +14,7 @@ export default function EditCollapse(props: CollapseProps) {
 
   return (
     <div
-      className={`flex flex-col bg-[#111827] p-4 transition-all duration-300 ${
+      className={`flex flex-col bg-[#111827] p-4 md:p-8 transition-all duration-300 ${
         isOpen ? "gap-4" : "gap-0"
       }`}
     >
@@ -23,10 +23,10 @@ export default function EditCollapse(props: CollapseProps) {
         className="flex justify-between cursor-pointer"
       >
         <div className="flex justify-between">
-          <p className="text-white font-bold">{title}</p>
+          <p className="text-base md:text-2xl text-white font-bold">{title}</p>
         </div>
         <button
-          className={`text-2xl text-white transition-transform duration-300 ${
+          className={`text-2xl md:text-3xl text-white transition-transform duration-300 ${
             isOpen ? "rotate-0" : "rotate-180"
           }`}
         >
