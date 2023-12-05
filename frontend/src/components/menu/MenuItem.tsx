@@ -30,14 +30,14 @@ export default function MenuItem(props: MenuItemProps) {
         <Icon
           data-tooltip-id="menu-tooltip"
           data-tooltip-content={title}
-          className="text-3xl transition-colors duration-150 outline-none"
+          className="text-3xl md:text-4xl transition-colors duration-150 outline-none"
           fill={isHover || isRouteActive ? "#F64E2B" : "white"}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         />
 
         <p
-          className={`text-base text-white font-bold transition-opacity ${
+          className={`text-base md:text-xl text-white font-bold transition-opacity ${
             isMenuOpen ? "opacity-100" : "opacity-0"
           }`}
         >

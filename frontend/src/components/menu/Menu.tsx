@@ -19,17 +19,17 @@ export default function Menu(props: MenuProps) {
   return (
     <div
       className={`${
-        open ? "w-20" : "w-12"
+        open ? "w-20 md:w-24" : "w-12 md:w-16"
       } flex flex-col items-center bg-[#111827] h-screen sticky top-0 px-7 py-12 transition-all duration-200`}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="absolute top-2 -right-4 text-3xl"
+        className="absolute top-2 -right-4 md:-right-5 text-3xl md:text-4xl"
       >
         {open ? <FaCaretLeft fill="red" /> : <FaCaretRight fill="red" />}
       </button>
 
-      <div className="flex flex-col gap-y-10 mt-8 max-w-full">
+      <div className="flex flex-col gap-y-10 md:gap-y-20 mt-8 max-w-full">
         <MenuItem route="/" isMenuOpen={open} icon={FaHouse} title="Início" />
 
         <MenuItem
