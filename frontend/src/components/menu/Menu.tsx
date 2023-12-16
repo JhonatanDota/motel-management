@@ -15,22 +15,12 @@ import {
 type MenuProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
+  isMobile: boolean;
+  setIsMobile: (open: boolean) => void;
 };
+
 export default function Menu(props: MenuProps) {
-  const { open, setOpen } = props;
-
-  const [isMobile, setIsMobile] = useState<boolean>(true);
-
-  function handleWindowSizeChange(): void {
-    setIsMobile(window.innerWidth <= 768);
-  }
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
+  const { open, setOpen, isMobile, setIsMobile } = props;
 
   return (
     <div
