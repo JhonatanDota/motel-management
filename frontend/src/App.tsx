@@ -29,7 +29,7 @@ function App() {
         />
         <div
           className={`flex flex-col m-auto my-4 py-6 transition-all duration-150 ${
-            isMobile && isOpen ? "w-[70%]" : "w-[90%]"
+            isMobile ? `${isOpen ? "w-[70%]" : "w-[90%]"}` : "w-[60%]"
           }`}
         >
           <AppRoutes />

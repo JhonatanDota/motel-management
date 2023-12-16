@@ -33,9 +33,9 @@ export default function Menu(props: MenuProps) {
       {isMobile ? (
         <button
           onClick={() => setOpen(!open)}
-          className="absolute right-3 top-3 text-2xl"
+          className="fixed right-3 top-3 text-2xl z-10"
         >
-          <TiThMenu fill={`${open ? "white" : "black"}`} />
+          <TiThMenu fill="red" />
         </button>
       ) : (
         <button

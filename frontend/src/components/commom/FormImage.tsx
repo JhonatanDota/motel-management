@@ -1,5 +1,7 @@
 import { ChangeEvent, useRef } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaArrowRotateRight } from "react-icons/fa6";
+
 import { PERMITTED_EXTENSIONS } from "../../constants";
 
 type FormImageProps = {
@@ -33,7 +35,8 @@ export default function FormImage(props: FormImageProps) {
   function handleChangeImage(event: ChangeEvent<HTMLInputElement>): void {
     const files: FileList | null = event.target.files;
 
-    if (files != null && checkHaveFile(files)) { //TODO: ACCEPT SVG IMAGES
+    if (files != null && checkHaveFile(files)) {
+      //TODO: ACCEPT SVG IMAGES
       const file: File = files[0];
 
       const extension: string = extractExtension(file.type);
@@ -49,16 +52,16 @@ export default function FormImage(props: FormImageProps) {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col">
       {image && (
         <img
-          className="w-full h-52 md:h-72 object-contain my-4"
+          className="w-full h-40 md:h-72 object-contain my-4"
           src={typeof image === "string" ? image : URL.createObjectURL(image)}
           alt="preview"
         />
       )}
 
-      <div className="flex gap-y-4 justify-around">
+      <div className="flex gap-3 justify-center m-auto">
         <input
           ref={inputRef}
           className="hidden"
@@ -68,15 +71,19 @@ export default function FormImage(props: FormImageProps) {
         />
         <label
           onClick={() => inputRef.current?.click()}
-          className="text-base md:text-2xl cursor-pointer text-center rounded-md font-bold p-4 md:p-6 text-white bg-[#111827]"
+          className={`flex justify-center bg-[#111827] rounded-md text-white font-bold cursor-pointer ${
+            image
+              ? "p-5 text-lg md:text-3xl"
+              : "p-4 md:p-6 text-base md:text-xl"
+          }`}
         >
-          {image ? "Trocar imagem" : "Selecionar Imagem"}
+          {image ? <FaArrowRotateRight /> : "Selecionar Imagem"}
         </label>
 
         {image && (
           <button
             onClick={removeImage}
-            className="text-2xl md:text-3xl bg-black p-3 md:px-9 rounded-md"
+            className="flex justify-center text-lg md:text-3xl bg-[#111827] p-5 rounded-md"
           >
             <FaTrashAlt fill="white" />
           </button>
