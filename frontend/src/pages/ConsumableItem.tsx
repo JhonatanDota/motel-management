@@ -39,9 +39,9 @@ export default function ConsumableItem() {
     fetchConsumableItems();
   }, []);
 
-  function onAdd() {
+  function onAdd(addedConsumableItem: ConsumableItemModel) {
     setOpenAdd(false);
-    fetchConsumableItems();
+    setConsumableItems([addedConsumableItem, ...consumableItems]);
     toast.success("Item adicionado !");
   }
 
@@ -61,7 +61,7 @@ export default function ConsumableItem() {
             <EditContainerSkeleton />
           ) : (
             consumableItems.map((consumableItem: ConsumableItemModel) => (
-              <EditCollapse title={consumableItem.name}>
+              <EditCollapse key={consumableItem.id} title={consumableItem.name}>
                 <EditContainer>
                   <EditContent>
                     <EditConsumableItem consumableItem={consumableItem} />

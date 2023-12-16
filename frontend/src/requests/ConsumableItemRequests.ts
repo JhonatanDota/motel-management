@@ -23,6 +23,23 @@ export async function addConsumableItem(
   return response;
 }
 
+export async function editConsumableItem(
+  id: number,
+  data: ConsumableItemModel
+): Promise<AxiosResponse<ApiResponse<ConsumableItemModel>>> {
+  const response = await axios.patch<ApiResponse<ConsumableItemModel>>(
+    `${CONSUMABLE_ITEMS_URL}${id}`,
+    data,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response;
+}
+
 export async function getConsumableItems(): Promise<
   AxiosResponse<ApiResponse<ConsumableItemModel>>
 > {

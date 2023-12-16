@@ -3,13 +3,13 @@ import FormTextInput from "../commom/FormTextInput";
 import FormImage from "../commom/FormImage";
 import FormCurrency from "../commom/FormCurrency";
 import { addConsumableItem } from "../../requests/ConsumableItemRequests";
-import { ConsumableItemWithoutIdModel } from "../../models/ConsumableItemModel";
+import ConsumableItemModel, { ConsumableItemWithoutIdModel } from "../../models/ConsumableItemModel";
 import ConfirmActionButton from "../commom/ConfirmActionButton";
 import { FaCirclePlus } from "react-icons/fa6";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
 
 type AddConsumableItemProps = {
-  onAdd: () => void;
+  onAdd: (addedConsumableItem: ConsumableItemModel) => void;
 };
 
 export default function AddConsumableItem(props: AddConsumableItemProps) {
@@ -27,8 +27,10 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
     try {
       const response = await addConsumableItem(data);
 
+      const consumableItem: ConsumableItemModel = response.data as object as ConsumableItemModel;
+
       resetData();
-      onAdd();
+      onAdd(consumableItem);
     } catch {
       //TODO: Make tratatives
     } finally {
