@@ -28,8 +28,8 @@ function App() {
           setIsMobile={setIsMobile}
         />
         <div
-          className={`flex flex-col m-auto my-4 py-6 transition-all duration-150 ${
-            isMobile ? `${isOpen ? "w-[70%]" : "w-[90%]"}` : "w-[60%]"
+          className={`flex flex-col mx-auto my-8 transition-all duration-150 ${
+            isMobile ? `${isOpen ? "w-[80%] p-4" : "w-full p-4"}` : "w-[55%] p-6"
           }`}
         >
           <AppRoutes />

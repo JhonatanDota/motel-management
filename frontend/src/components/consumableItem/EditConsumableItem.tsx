@@ -68,14 +68,14 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
       />
       <FormImage image={image} setImage={setImage} />
       <ConfirmActionButton
-        data-tooltip-id="menu-tooltip"
+        data-tooltip-id="edit-tooltip"
         content={<MdEditSquare fill="gold" />}
         classes="mx-auto mt-6 text-4xl md:text-6xl"
         onClick={handleEdit}
         disabled={false}
       />
       <Tooltip
-        id="menu-tooltip"
+        id="edit-tooltip"
         place="bottom"
         delayShow={20}
         delayHide={20}
