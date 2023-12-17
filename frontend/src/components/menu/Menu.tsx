@@ -23,10 +23,10 @@ export default function Menu(props: MenuProps) {
 
   return (
     <div
-      className={`flex flex-col items-center bg-[#111827] h-screen transition-all duration-200 py-12 ${
+      className={`flex flex-col items-center sticky top-0 bg-[#111827] h-screen transition-all duration-200 py-12 ${
         isMobile && !open
           ? "w-0 px-0 max-w-0 overflow-hidden"
-          : `sticky top-0 px-7 ${open ? "w-20 md:w-24" : "w-12 md:w-16"}`
+          : `px-7 ${open ? "w-20 md:w-24" : "w-12 md:w-16"}`
       }`}
     >
       {isMobile ? (
