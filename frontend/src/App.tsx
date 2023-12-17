@@ -5,7 +5,7 @@ import Menu from "./components/menu/Menu";
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
 
   function handleWindowSizeChange(): void {
     setIsMobile(window.innerWidth <= 768);
@@ -25,7 +25,6 @@ function App() {
           open={isOpen}
           setOpen={setIsOpen}
           isMobile={isMobile}
-          setIsMobile={setIsMobile}
         />
         <div
           className={`flex flex-col mx-auto my-8 transition-all duration-150 ${

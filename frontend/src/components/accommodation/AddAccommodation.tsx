@@ -18,7 +18,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
         options={
           <>
             {rooms.map((room: RoomModel) => (
-              <option value={room.id}>{room.number}</option>
+              <option key={room.id} value={room.id}>{room.number}</option>
             ))}
           </>
         }
@@ -31,7 +31,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
         options={
           <>
             {consumableItems.map((consumableItem: ConsumableItemModel) => (
-              <option value={consumableItem.id}>{consumableItem.name}</option>
+              <option key={consumableItem.id} value={consumableItem.id}>{consumableItem.name}</option>
             ))}
           </>
         }

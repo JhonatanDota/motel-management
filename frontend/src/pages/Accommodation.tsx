@@ -31,7 +31,7 @@ export default function Accommodation() {
 
       <EditContainer>
         {accommodationDumy.map((accommodation: AccommodationModel) => (
-          <EditCollapse title={accommodation.alias}>
+          <EditCollapse key={accommodation.id} title={accommodation.alias}>
             <h1 className="bg-green-400">Testando</h1>
           </EditCollapse>
         ))}

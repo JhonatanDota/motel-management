@@ -16,11 +16,10 @@ type MenuProps = {
   open: boolean;
   setOpen: (open: boolean) => void;
   isMobile: boolean;
-  setIsMobile: (open: boolean) => void;
 };
 
 export default function Menu(props: MenuProps) {
-  const { open, setOpen, isMobile, setIsMobile } = props;
+  const { open, setOpen, isMobile } = props;
 
   return (
     <div

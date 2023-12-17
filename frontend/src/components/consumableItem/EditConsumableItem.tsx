@@ -37,8 +37,6 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
   //   }
   // }
 
-  console.log(consumableItem)
-
   function handleEdit(): void {
     const data: ConsumableItemModel = {
       id: consumableItem.id,
