@@ -11,11 +11,17 @@ type InputsConsumableItemProps = {
   submitButton: ReactNode;
   onSubmit: (consumableItem: ConsumableItemWithoutIdModel) => void;
   disableSubmit: boolean;
-  resetFields: boolean;
+  toResetFields: boolean;
 };
 
 export default function InputsConsumableItem(props: InputsConsumableItemProps) {
-  const { consumableItem, submitButton, onSubmit, disableSubmit } = props;
+  const {
+    consumableItem,
+    submitButton,
+    onSubmit,
+    disableSubmit,
+    toResetFields,
+  } = props;
 
   const [name, setName] = useState<string>(consumableItem?.name ?? "");
   const [price, setPrice] = useState<number>(consumableItem?.price ?? 0);
@@ -40,6 +46,14 @@ export default function InputsConsumableItem(props: InputsConsumableItemProps) {
     if (validator.validateData() === false) return;
 
     onSubmit(data);
+    if (toResetFields) resetFields();
+  }
+
+  function resetFields(): void {
+    setName("");
+    setPrice(0);
+    setDescription("");
+    setImage(null);
   }
 
   return (

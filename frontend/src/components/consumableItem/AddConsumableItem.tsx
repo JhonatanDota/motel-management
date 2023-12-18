@@ -40,7 +40,7 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
         }
         onSubmit={add}
         disableSubmit={isAdding}
-        resetFields={true}
+        toResetFields={true}
       />
     </>
   );

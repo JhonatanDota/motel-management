@@ -2,6 +2,7 @@ import { ConsumableItemWithoutIdModel } from "../models/ConsumableItemModel";
 import BaseValidationClasses from "./baseValidationsClass";
 
 const MIN_NAME_LENGTH: number = 3;
+const MAX_NAME_LENGTH: number = 100;
 const MIN_PRICE_VALUE: number = 1;
 
 export default class ConsumableItemValidations extends BaseValidationClasses {
@@ -16,6 +17,13 @@ export default class ConsumableItemValidations extends BaseValidationClasses {
     if (this.consumableItem.name.length < MIN_NAME_LENGTH) {
       this.showErrorToast(
         `O nome deve ter no mínimo ${MIN_NAME_LENGTH} letras.`
+      );
+      return false;
+    }
+
+    if (this.consumableItem.name.length >= MAX_NAME_LENGTH) {
+      this.showErrorToast(
+        `O nome deve ter no máximo ${MAX_NAME_LENGTH} letras.`
       );
       return false;
     }
