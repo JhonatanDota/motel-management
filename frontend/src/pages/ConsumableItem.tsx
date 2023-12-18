@@ -49,8 +49,8 @@ export default function ConsumableItem() {
     const updatedConsumableItems: ConsumableItemModel[] = [...consumableItems];
 
     updatedConsumableItems[index] = consumableItem;
-
     setConsumableItems(updatedConsumableItems);
+    toast.success("Item Atualizado");
   }
 
   return (
@@ -79,7 +79,7 @@ export default function ConsumableItem() {
                       <EditConsumableItem
                         consumableItem={consumableItem}
                         index={index}
-                        onFinishEdit={onEdit}
+                        onEdit={onEdit}
                       />
                     </EditContent>
                   </EditContainer>

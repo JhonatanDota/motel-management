@@ -11,11 +11,11 @@ import SubmitButton from "../commom/SubmitButton";
 type EditConsumableItemProps = {
   consumableItem: ConsumableItemModel;
   index: number;
-  onFinishEdit: (index: number, consumableItem: ConsumableItemModel) => void;
+  onEdit: (index: number, consumableItem: ConsumableItemModel) => void;
 };
 
 export default function EditConsumableItem(props: EditConsumableItemProps) {
-  const { consumableItem, index, onFinishEdit } = props;
+  const { consumableItem, index, onEdit } = props;
 
   const [name, setName] = useState<string>(consumableItem.name);
   const [price, setPrice] = useState<number>(consumableItem.price);
@@ -33,7 +33,7 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
         consumableItem
       );
 
-      onFinishEdit(index, response.data);
+      onEdit(index, response.data);
     } catch {
       //TODO: Make tratatives
     }
