@@ -1,12 +1,9 @@
-import { useState } from "react";
-import ConsumableItemModel from "../../models/ConsumableItemModel";
-import FormTextInput from "../commom/FormTextInput";
-import FormCurrency from "../commom/FormCurrency";
-import FormImage from "../commom/FormImage";
-import ConfirmActionButton from "../commom/ConfirmActionButton";
+import ConsumableItemModel, {
+  ConsumableItemWithoutIdModel,
+} from "../../models/ConsumableItemModel";
 import { editConsumableItem } from "../../requests/ConsumableItemRequests";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
-import SubmitButton from "../commom/SubmitButton";
+import InputsConsumableItem from "./InputsConsumableItem";
 
 type EditConsumableItemProps = {
   consumableItem: ConsumableItemModel;
@@ -16,15 +13,6 @@ type EditConsumableItemProps = {
 
 export default function EditConsumableItem(props: EditConsumableItemProps) {
   const { consumableItem, index, onEdit } = props;
-
-  const [name, setName] = useState<string>(consumableItem.name);
-  const [price, setPrice] = useState<number>(consumableItem.price);
-  const [description, setDescription] = useState<string>(
-    consumableItem.description ?? ""
-  );
-  const [image, setImage] = useState<File | string | null>(
-    consumableItem.image
-  );
 
   async function edit(consumableItem: ConsumableItemModel) {
     try {
@@ -39,41 +27,21 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
     }
   }
 
-  function handleEdit(): void {
-    const data: ConsumableItemModel = {
-      id: consumableItem.id,
-      name: name,
-      price: price,
-      description: description,
-      image: image ?? "",
-    };
-
+  function handleEdit(data: ConsumableItemWithoutIdModel): void {
     const validator: ConsumableItemValidations = new ConsumableItemValidations(
       data
     );
 
     if (validator.validateData() === false) return;
 
-    edit(data);
+    edit({ id: consumableItem.id, ...data });
   }
 
   return (
     <>
-      <FormTextInput label="Nome" value={name} setValue={setName} />
-      <FormCurrency label="Preço" value={price} setValue={setPrice} />
-      <FormTextInput
-        label="Descrição"
-        value={description}
-        setValue={setDescription}
-      />
-      <FormImage image={image} setImage={setImage} />
-      <ConfirmActionButton
-        content={
-          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white" />
-        }
-        classes="mx-auto text-4xl md:text-6xl"
-        onClick={handleEdit}
-        disabled={false}
+      <InputsConsumableItem
+        consumableItem={consumableItem}
+        onSubmit={handleEdit}
       />
     </>
   );
