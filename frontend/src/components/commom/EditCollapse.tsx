@@ -42,7 +42,7 @@ export default function EditCollapse(props: CollapseProps) {
           },
         }}
       >
-        <div className="flex justify-between">
+        <div className="flex justify-between overflow-hidden">
           <p className="text-base md:text-2xl text-white font-bold">{title}</p>
         </div>
         <motion.button
