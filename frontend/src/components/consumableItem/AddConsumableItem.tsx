@@ -20,7 +20,7 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [description, setDescription] = useState<string>("");
-  const [image, setImage] = useState<File>();
+  const [image, setImage] = useState<File | null>(null);
   const [isAdding, setIsAdding] = useState<boolean>(false);
 
   async function add(data: ConsumableItemWithoutIdModel) {
@@ -61,7 +61,7 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
     setName("");
     setPrice(0); //TODO: Fix reset price
     setDescription("");
-    setImage(undefined);
+    setImage(null);
   }
 
   return (

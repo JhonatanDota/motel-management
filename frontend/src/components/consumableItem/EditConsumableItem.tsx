@@ -4,10 +4,9 @@ import FormTextInput from "../commom/FormTextInput";
 import FormCurrency from "../commom/FormCurrency";
 import FormImage from "../commom/FormImage";
 import ConfirmActionButton from "../commom/ConfirmActionButton";
-import { MdEditSquare } from "react-icons/md";
-import { Tooltip } from "react-tooltip";
 import { editConsumableItem } from "../../requests/ConsumableItemRequests";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
+import SubmitButton from "../commom/SubmitButton";
 
 type EditConsumableItemProps = {
   consumableItem: ConsumableItemModel;
@@ -21,21 +20,21 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
   const [description, setDescription] = useState<string>(
     consumableItem.description ?? ""
   );
-  const [image, setImage] = useState<File | string | undefined>(
+  const [image, setImage] = useState<File | string | null>(
     consumableItem.image
   );
 
-  // async function edit(data: ConsumableItemWithoutIdModel) {
-  //   setIsAdding(true);
+  async function edit(consumableItem: ConsumableItemModel) {
+    try {
+      const response = await editConsumableItem(
+        consumableItem.id,
+        consumableItem
+      );
 
-  //   try {
-  //     const response = await addConsumableItem(data);
-  //   } catch {
-  //     //TODO: Make tratatives
-  //   } finally {
-  //     setIsAdding(false);
-  //   }
-  // }
+    } catch {
+      //TODO: Make tratatives
+    }
+  }
 
   function handleEdit(): void {
     const data: ConsumableItemModel = {
@@ -43,7 +42,7 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
       name: name,
       price: price,
       description: description,
-      image: image,
+      image: image ?? "",
     };
 
     const validator: ConsumableItemValidations = new ConsumableItemValidations(
@@ -52,11 +51,11 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
 
     if (validator.validateData() === false) return;
 
-    // add(data);
+    edit(data);
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <>
       <FormTextInput label="Nome" value={name} setValue={setName} />
       <FormCurrency label="Preço" value={price} setValue={setPrice} />
       <FormTextInput
@@ -66,20 +65,13 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
       />
       <FormImage image={image} setImage={setImage} />
       <ConfirmActionButton
-        data-tooltip-id="edit-tooltip"
-        content={<MdEditSquare fill="gold" />}
-        classes="mx-auto mt-6 text-4xl md:text-6xl"
+        content={
+          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white" />
+        }
+        classes="mx-auto text-4xl md:text-6xl"
         onClick={handleEdit}
         disabled={false}
       />
-      <Tooltip
-        id="edit-tooltip"
-        place="bottom"
-        delayShow={20}
-        delayHide={20}
-        opacity={0.5}
-        style={{ backgroundColor: "#F64E2B", fontWeight: "bold" }}
-      />
-    </div>
+    </>
   );
 }

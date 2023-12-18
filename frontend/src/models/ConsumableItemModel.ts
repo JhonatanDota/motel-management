@@ -3,7 +3,7 @@ export default interface ConsumableItemModel {
   name: string;
   price: number;
   description?: string;
-  image?: File | string;
+  image: File | string | null;
 }
 
 export type ConsumableItemWithoutIdModel = Omit<ConsumableItemModel, "id">;

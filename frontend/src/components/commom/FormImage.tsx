@@ -5,8 +5,8 @@ import { FaArrowRotateRight } from "react-icons/fa6";
 import { PERMITTED_EXTENSIONS } from "../../constants";
 
 type FormImageProps = {
-  image?: File | string;
-  setImage: (file?: File) => void;
+  image: File | string | null;
+  setImage: (file: File | null) => void;
 };
 
 export default function FormImage(props: FormImageProps) {
@@ -29,7 +29,7 @@ export default function FormImage(props: FormImageProps) {
   }
 
   function removeImage(): void {
-    setImage();
+    setImage(null);
   }
 
   function handleChangeImage(event: ChangeEvent<HTMLInputElement>): void {

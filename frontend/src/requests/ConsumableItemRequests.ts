@@ -28,7 +28,7 @@ export async function editConsumableItem(
   data: ConsumableItemModel
 ): Promise<AxiosResponse<ApiResponse<ConsumableItemModel>>> {
   const response = await axios.patch<ApiResponse<ConsumableItemModel>>(
-    `${CONSUMABLE_ITEMS_URL}${id}`,
+    `${CONSUMABLE_ITEMS_URL}${id}/`,
     data,
     {
       headers: {
