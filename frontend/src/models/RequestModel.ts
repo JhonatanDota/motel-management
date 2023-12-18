@@ -15,8 +15,12 @@ interface Links {
   prev: string | null;
 }
 
-export default interface ApiResponse<T> {
+export interface ApiResponseList<T> {
   results: T[];
   meta: Meta;
   links: Links;
+}
+
+export interface ApiResponse<T> {
+  data: T;
 }

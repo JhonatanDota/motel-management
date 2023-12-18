@@ -45,6 +45,14 @@ export default function ConsumableItem() {
     toast.success("Item adicionado !");
   }
 
+  function onEdit(index: number, consumableItem: ConsumableItemModel) {
+    const updatedConsumableItems: ConsumableItemModel[] = [...consumableItems];
+
+    updatedConsumableItems[index] = consumableItem;
+
+    setConsumableItems(updatedConsumableItems);
+  }
+
   return (
     <>
       <Toaster position="top-right" />
@@ -60,15 +68,24 @@ export default function ConsumableItem() {
           {isFetching ? (
             <EditContainerSkeleton />
           ) : (
-            consumableItems.map((consumableItem: ConsumableItemModel) => (
-              <EditCollapse key={consumableItem.id} title={consumableItem.name}>
-                <EditContainer>
-                  <EditContent>
-                    <EditConsumableItem consumableItem={consumableItem} />
-                  </EditContent>
-                </EditContainer>
-              </EditCollapse>
-            ))
+            consumableItems.map(
+              (consumableItem: ConsumableItemModel, index: number) => (
+                <EditCollapse
+                  key={consumableItem.id}
+                  title={consumableItem.name}
+                >
+                  <EditContainer>
+                    <EditContent>
+                      <EditConsumableItem
+                        consumableItem={consumableItem}
+                        index={index}
+                        onFinishEdit={onEdit}
+                      />
+                    </EditContent>
+                  </EditContainer>
+                </EditCollapse>
+              )
+            )
           )}
         </EditContainer>
       </PageContainer>

@@ -29,12 +29,9 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
     try {
       const response = await addConsumableItem(data);
 
-      const consumableItem: ConsumableItemModel =
-        response.data as object as ConsumableItemModel;
-
       resetData();
-      onAdd(consumableItem);
-    } catch {
+      onAdd(response.data);
+    } catch (error) {
       //TODO: Make tratatives
     } finally {
       setIsAdding(false);
