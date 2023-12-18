@@ -4,6 +4,7 @@ import ConsumableItemModel, {
 import { editConsumableItem } from "../../requests/ConsumableItemRequests";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
 import InputsConsumableItem from "./InputsConsumableItem";
+import SubmitButton from "../commom/SubmitButton";
 
 type EditConsumableItemProps = {
   consumableItem: ConsumableItemModel;
@@ -42,6 +43,11 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
       <InputsConsumableItem
         consumableItem={consumableItem}
         onSubmit={handleEdit}
+        disableSubmit={false}
+        resetFields={false}
+        submitButton={
+          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white" />
+        }
       />
     </>
   );

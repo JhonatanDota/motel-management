@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import FormCurrency from "../commom/FormCurrency";
 import FormImage from "../commom/FormImage";
 import FormTextInput from "../commom/FormTextInput";
 import { ConsumableItemWithoutIdModel } from "../../models/ConsumableItemModel";
 import ConfirmActionButton from "../commom/ConfirmActionButton";
-import SubmitButton from "../commom/SubmitButton";
+import ConsumableItemValidations from "../../validations/consumableItemValidations";
 
 type InputsConsumableItemProps = {
   consumableItem?: ConsumableItemWithoutIdModel;
+  submitButton: ReactNode;
   onSubmit: (consumableItem: ConsumableItemWithoutIdModel) => void;
+  disableSubmit: boolean;
+  resetFields: boolean;
 };
 
 export default function InputsConsumableItem(props: InputsConsumableItemProps) {
-  const { consumableItem, onSubmit } = props;
+  const { consumableItem, submitButton, onSubmit, disableSubmit } = props;
 
   const [name, setName] = useState<string>(consumableItem?.name ?? "");
   const [price, setPrice] = useState<number>(consumableItem?.price ?? 0);
@@ -31,6 +34,11 @@ export default function InputsConsumableItem(props: InputsConsumableItemProps) {
       image: image ?? "",
     };
 
+    const validator: ConsumableItemValidations = new ConsumableItemValidations(
+      data
+    );
+    if (validator.validateData() === false) return;
+
     onSubmit(data);
   }
 
@@ -45,12 +53,10 @@ export default function InputsConsumableItem(props: InputsConsumableItemProps) {
       />
       <FormImage image={image} setImage={setImage} />
       <ConfirmActionButton
-        content={
-          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white" />
-        }
+        content={submitButton}
         classes="mx-auto text-4xl md:text-6xl"
         onClick={handleSubmit}
-        disabled={false}
+        disabled={disableSubmit}
       />
     </>
   );
