@@ -74,7 +74,7 @@ export default function FormImage(props: FormImageProps) {
           className={`flex justify-center bg-[#111827] rounded-md text-white font-bold cursor-pointer ${
             image
               ? "p-5 text-lg md:text-3xl"
-              : "p-4 md:p-6 text-base md:text-xl"
+              : "p-3 md:p-6 text-base md:text-xl"
           }`}
         >
           {image ? <FaArrowRotateRight /> : "Selecionar Imagem"}

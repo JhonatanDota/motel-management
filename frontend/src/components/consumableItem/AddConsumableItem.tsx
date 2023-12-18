@@ -3,10 +3,12 @@ import FormTextInput from "../commom/FormTextInput";
 import FormImage from "../commom/FormImage";
 import FormCurrency from "../commom/FormCurrency";
 import { addConsumableItem } from "../../requests/ConsumableItemRequests";
-import ConsumableItemModel, { ConsumableItemWithoutIdModel } from "../../models/ConsumableItemModel";
+import ConsumableItemModel, {
+  ConsumableItemWithoutIdModel,
+} from "../../models/ConsumableItemModel";
 import ConfirmActionButton from "../commom/ConfirmActionButton";
-import { FaCirclePlus } from "react-icons/fa6";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
+import SubmitButton from "../commom/SubmitButton";
 
 type AddConsumableItemProps = {
   onAdd: (addedConsumableItem: ConsumableItemModel) => void;
@@ -27,7 +29,8 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
     try {
       const response = await addConsumableItem(data);
 
-      const consumableItem: ConsumableItemModel = response.data as object as ConsumableItemModel;
+      const consumableItem: ConsumableItemModel =
+        response.data as object as ConsumableItemModel;
 
       resetData();
       onAdd(consumableItem);
@@ -72,8 +75,13 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
       />
       <FormImage image={image} setImage={setImage} />
       <ConfirmActionButton
-        content={<FaCirclePlus fill="green" />}
-        classes="mx-auto mt-6 text-4xl md:text-6xl"
+        content={
+          <SubmitButton
+            text="Adicionar"
+            extraClasses="bg-[#6bb120] text-white"
+          />
+        }
+        classes="mx-auto mt-2"
         onClick={handleAdd}
         disabled={isAdding}
       />
