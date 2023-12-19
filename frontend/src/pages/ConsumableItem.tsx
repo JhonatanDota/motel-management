@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import { Links } from "../models/RequestModel";
 import ConsumableItemModel from "../models/ConsumableItemModel";
 import PageContainer from "../components/pages/PageContainer";
 import PageTitle from "../components/pages/PageTitle";
@@ -15,6 +16,7 @@ import EditConsumableItem from "../components/consumableItem/EditConsumableItem"
 
 import { getConsumableItems } from "../requests/ConsumableItemRequests";
 import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton";
+import Pagination from "../components/pagination/Pagination";
 
 export default function ConsumableItem() {
   const [openAdd, setOpenAdd] = useState<boolean>(false);
@@ -24,20 +26,25 @@ export default function ConsumableItem() {
     []
   );
 
-  async function fetchConsumableItems() {
+  async function fetchConsumableItems(
+    url?: string
+  ): Promise<Links | undefined> {
+    let links: Links | undefined;
+
     try {
-      const response = await getConsumableItems();
-      setConsumableItems(response.data.results);
+      const response = await getConsumableItems(url);
+      const results: ConsumableItemModel[] = response.data.results;
+      links = response.data.links;
+
+      setConsumableItems(results);
     } catch {
       //TODO: Make tratatives
     } finally {
       setIsFetching(false);
     }
-  }
 
-  useEffect(() => {
-    fetchConsumableItems();
-  }, []);
+    return links;
+  }
 
   function onAdd(addedConsumableItem: ConsumableItemModel) {
     setOpenAdd(false);
@@ -88,6 +95,7 @@ export default function ConsumableItem() {
             )
           )}
         </EditContainer>
+        <Pagination requestFunc={fetchConsumableItems} />
       </PageContainer>
     </>
   );

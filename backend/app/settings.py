@@ -66,7 +66,7 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework_json_api.pagination.JsonApiPageNumberPagination",
-    "PAGE_SIZE": 10,
+    "PAGE_SIZE": 6,
 }
 
 SPECTACULAR_SETTINGS = {

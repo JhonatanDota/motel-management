@@ -30,11 +30,11 @@ export async function editConsumableItem(
   return response;
 }
 
-export async function getConsumableItems(): Promise<
-  AxiosResponse<ApiResponseList<ConsumableItemModel>>
-> {
+export async function getConsumableItems(
+  url?: string
+): Promise<AxiosResponse<ApiResponseList<ConsumableItemModel>>> {
   const response = await axios.get<ApiResponseList<ConsumableItemModel>>(
-    CONSUMABLE_ITEMS_URL
+    url ?? CONSUMABLE_ITEMS_URL
   );
 
   return response;

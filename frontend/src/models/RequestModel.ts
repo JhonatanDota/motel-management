@@ -8,7 +8,7 @@ interface Meta {
   pagination: Pagination;
 }
 
-interface Links {
+export interface Links {
   first: string;
   last: string;
   next: string | null;
