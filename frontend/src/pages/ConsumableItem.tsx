@@ -1,7 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
-import { Links } from "../models/RequestModel";
+import { PaginationModel } from "../models/RequestModel";
 import ConsumableItemModel from "../models/ConsumableItemModel";
 import PageContainer from "../components/pages/PageContainer";
 import PageTitle from "../components/pages/PageTitle";
@@ -27,23 +26,27 @@ export default function ConsumableItem() {
   );
 
   async function fetchConsumableItems(
-    url?: string
-  ): Promise<Links | undefined> {
-    let links: Links | undefined;
+    params?: object
+  ): Promise<PaginationModel> {
+    let pagination: PaginationModel;
 
     try {
-      const response = await getConsumableItems(url);
+      const response = await getConsumableItems(params);
       const results: ConsumableItemModel[] = response.data.results;
-      links = response.data.links;
+
+      pagination = {
+        links: response.data.links,
+        pages: response.data.meta.pagination,
+      };
 
       setConsumableItems(results);
-    } catch {
-      //TODO: Make tratatives
+    } catch (error) {
+      throw new Error("Unable to fetch pagination: "); //TODO: Add best tratative;
     } finally {
       setIsFetching(false);
     }
 
-    return links;
+    return pagination;
   }
 
   function onAdd(addedConsumableItem: ConsumableItemModel) {
@@ -57,6 +60,7 @@ export default function ConsumableItem() {
 
     updatedConsumableItems[index] = consumableItem;
     setConsumableItems(updatedConsumableItems);
+
     toast.success("Item Atualizado");
   }
 
