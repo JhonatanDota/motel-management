@@ -21,14 +21,10 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex">
-        <Menu
-          open={isOpen}
-          setOpen={setIsOpen}
-          isMobile={isMobile}
-        />
+        <Menu open={isOpen} setOpen={setIsOpen} isMobile={isMobile} />
         <div
           className={`flex flex-col m-auto my-4 py-6 transition-all duration-150 ${
-            isMobile ? `${isOpen ? "w-[70%]" : "w-full p-2"}` : "w-[60%]"
+            isMobile ? `${isOpen ? "w-[70%]" : "w-full p-2"}` : "w-[50%]"
           }`}
         >
           <AppRoutes />

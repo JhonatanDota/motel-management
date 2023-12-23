@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { PaginationModel } from "../../models/RequestModel";
 import { useSearchParams } from "react-router-dom";
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
 
 type PaginationProps = {
   requestFunc: (params?: object) => Promise<PaginationModel>;
@@ -39,17 +43,19 @@ export default function Pagination(props: PaginationProps) {
       <button
         onClick={() => previousPage && handleChangePage(previousPage)}
         disabled={!Boolean(previousPage)}
-        className="p-2 bg-green-500"
+        className="text-5xl md:text-7xl"
       >
-        ANTERIOR
+        <IoIosArrowDropleftCircle
+          fill={`${previousPage ? "green" : "#B8B8B8"}`}
+        />
       </button>
 
       <button
         onClick={() => nextPage && handleChangePage(nextPage)}
         disabled={!Boolean(nextPage)}
-        className="p-2 bg-green-500"
+        className="text-5xl md:text-7xl"
       >
-        PROXIMA
+        <IoIosArrowDroprightCircle fill={`${nextPage ? "green" : "#B8B8B8"}`} />
       </button>
     </div>
   );
