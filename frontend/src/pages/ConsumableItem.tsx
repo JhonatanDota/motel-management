@@ -70,7 +70,7 @@ export default function ConsumableItem() {
       <PageContainer>
         <PageTitle title="Consumíveis" />
         <HandleAddButton isOpen={openAdd} setIsOpen={setOpenAdd} />
-        <DropDownAnimation isOpen={openAdd} heightValue="100%">
+        <DropDownAnimation isOpen={openAdd} heightValue="auto">
           <AddContainer>
             <AddConsumableItem onAdd={onAdd} />
           </AddContainer>

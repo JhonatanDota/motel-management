@@ -35,7 +35,7 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
         submitButton={
           <SubmitButton
             text="Adicionar"
-            extraClasses="bg-[#6bb120] text-white"
+            extraClasses="bg-[#6bb120] text-white w-full mt-2"
           />
         }
         onSubmit={add}

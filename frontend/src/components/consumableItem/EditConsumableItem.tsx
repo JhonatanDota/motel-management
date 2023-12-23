@@ -46,7 +46,7 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
         disableSubmit={false}
         toResetFields={false}
         submitButton={
-          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white" />
+          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white w-full mt-2" />
         }
       />
     </>

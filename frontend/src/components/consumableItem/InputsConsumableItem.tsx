@@ -68,7 +68,6 @@ export default function InputsConsumableItem(props: InputsConsumableItemProps) {
       <FormImage image={image} setImage={setImage} />
       <ConfirmActionButton
         content={submitButton}
-        classes="mx-auto text-4xl md:text-6xl"
         onClick={handleSubmit}
         disabled={disableSubmit}
       />

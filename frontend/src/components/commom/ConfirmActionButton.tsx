@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 type ConfirmActionButtonProps = {
   content: string | ReactNode;
-  classes: string;
+  classes?: string;
   onClick: () => void;
   disabled: boolean;
 };

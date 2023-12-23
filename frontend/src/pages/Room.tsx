@@ -1,3 +1,14 @@
+import { useState } from "react";
+import PageContainer from "../components/pages/PageContainer";
+import PageTitle from "../components/pages/PageTitle";
+import HandleAddButton from "../components/commom/HandleAddButton";
+
 export default function Room() {
-  return <div className="flex flex-col gap-4 items-center"></div>;
+  const [openAdd, setOpenAdd] = useState<boolean>(false);
+  return (
+    <PageContainer>
+      <PageTitle title="Quartos" />
+      <HandleAddButton isOpen={openAdd} setIsOpen={setOpenAdd} />
+    </PageContainer>
+  );
 }
