@@ -11,9 +11,7 @@ export default function FormSelect(props: FormSelectProps) {
   return (
     <div className="flex flex-col gap-3">
       <label className="label">{label}</label>
-      <select className="input">
-        {children}
-      </select>
+      <select className="appearance-none input">{children}</select>
     </div>
   );
 }

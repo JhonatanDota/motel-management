@@ -4,6 +4,7 @@ import FormCurrency from "../commom/FormCurrency";
 import ConfirmActionButton from "../commom/ConfirmActionButton";
 import { RoomWithoutIdModel } from "../../models/RoomModel";
 import FormSelect from "../commom/FormSelect";
+import { RoomTypeEnum } from "../../data/RoomData";
 
 type InputsRoomProps = {
   room?: RoomWithoutIdModel;
@@ -45,7 +46,11 @@ export default function InputsRoom(props: InputsRoomProps) {
         setValue={setHourValue}
       />
       <FormSelect label="Tipo">
-        <option></option>
+        {Object.entries(RoomTypeEnum).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
       </FormSelect>
       <ConfirmActionButton
         content={submitButton}
