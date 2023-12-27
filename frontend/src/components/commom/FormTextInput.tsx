@@ -8,7 +8,7 @@ export default function FormTextInput(props: FormTextInputProps) {
   const { label, value, setValue } = props;
 
   return (
-    <div className="flex flex-col gap-3 md:gap-5">
+    <div className="flex flex-col gap-3">
       <label className="label">{label}</label>
       <input
         className="input"

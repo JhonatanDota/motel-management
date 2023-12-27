@@ -21,7 +21,7 @@ export default function FormCurrency(props: FormCurrencyProps) {
   }
 
   return (
-    <div className="flex flex-col gap-3 md:gap-5">
+    <div className="flex flex-col gap-3">
       <label className="label">{label}</label>
       <CurrencyInput
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}

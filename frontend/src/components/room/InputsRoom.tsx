@@ -3,6 +3,7 @@ import FormNumberInput from "../commom/FormNumberInput";
 import FormCurrency from "../commom/FormCurrency";
 import ConfirmActionButton from "../commom/ConfirmActionButton";
 import { RoomWithoutIdModel } from "../../models/RoomModel";
+import FormSelect from "../commom/FormSelect";
 
 type InputsRoomProps = {
   room?: RoomWithoutIdModel;
@@ -43,6 +44,9 @@ export default function InputsRoom(props: InputsRoomProps) {
         value={hourValue}
         setValue={setHourValue}
       />
+      <FormSelect label="Tipo">
+        <option></option>
+      </FormSelect>
       <ConfirmActionButton
         content={submitButton}
         onClick={handleSubmit}

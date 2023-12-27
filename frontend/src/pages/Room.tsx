@@ -13,7 +13,7 @@ export default function Room() {
     <PageContainer>
       <PageTitle title="Quartos" />
       <HandleAddButton isOpen={openAdd} setIsOpen={setOpenAdd} />
-      <DropDownAnimation isOpen={openAdd} heightValue="auto">
+      <DropDownAnimation isOpen={openAdd} heightValue="100%">
         <AddContainer>
           <AddRoom />
         </AddContainer>

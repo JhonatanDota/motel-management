@@ -17,7 +17,7 @@ export default function FormNumberInput(props: FormNumberInputProps) {
   const { label, value, setValue } = props;
 
   return (
-    <div className="flex flex-col gap-3 md:gap-5">
+    <div className="flex flex-col gap-3">
       <label className="label">{label}</label>
       <input
         className="input"

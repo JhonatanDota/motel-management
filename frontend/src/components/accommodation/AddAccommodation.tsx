@@ -13,7 +13,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
 
   return (
     <>
-      <FormSelect
+      {/* <FormSelect
         label="Quarto"
         options={
           <>
@@ -22,11 +22,11 @@ export default function AddAccommodation(props: AddAccommodationProps) {
             ))}
           </>
         }
-      />
+      /> */}
 
       {/* <FormTextInput label="Apelido" /> */}
 
-      <FormSelect
+      {/* <FormSelect
         label="Consumíveis"
         options={
           <>
@@ -35,7 +35,7 @@ export default function AddAccommodation(props: AddAccommodationProps) {
             ))}
           </>
         }
-      />
+      /> */}
     </>
   );
 }
