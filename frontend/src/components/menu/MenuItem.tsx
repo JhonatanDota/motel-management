@@ -30,7 +30,7 @@ export default function MenuItem(props: MenuItemProps) {
         <Icon
           data-tooltip-id="menu-tooltip"
           data-tooltip-content={title}
-          className="text-3xl md:text-4xl transition-colors duration-150 outline-none"
+          className="text-3xl md:text-5xl transition-colors duration-150 outline-none"
           fill={isHover || isRouteActive ? "#F64E2B" : "white"}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
