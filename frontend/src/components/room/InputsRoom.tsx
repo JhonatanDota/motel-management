@@ -19,12 +19,13 @@ export default function InputsRoom(props: InputsRoomProps) {
 
   const [number, setNumber] = useState<number>(room?.number ?? 0);
   const [hourValue, setHourValue] = useState<number>(room?.hour_value ?? 0);
+  const [type, setType] = useState<string>(room?.type ?? "");
 
   function handleSubmit(): void {
     let data: RoomWithoutIdModel = {
       number: number,
       hour_value: hourValue,
-      type: "a",
+      type: type,
     };
 
     onSubmit(data);
@@ -45,7 +46,7 @@ export default function InputsRoom(props: InputsRoomProps) {
         value={hourValue}
         setValue={setHourValue}
       />
-      <FormSelect label="Tipo">
+      <FormSelect label="Tipo" value={type} setValue={setType}>
         {Object.entries(RoomTypeEnum).map(([key, value]) => (
           <option key={key} value={key}>
             {value}
