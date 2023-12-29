@@ -8,10 +8,10 @@ body {
 
 @layer components {
   .input {
-    @apply text-base md:text-xl rounded-md bg-white border-4 border-[#111827] focus:border-[#F64E2B] text-black p-3 md:p-5 font-bold outline-none transition-colors duration-300;
+    @apply text-base md:text-xl rounded-md bg-white border-2 border-[#111827] focus:border-[#F64E2B] text-black p-3 md:p-5 font-bold outline-none transition-colors duration-300;
   }
 
   .label {
-    @apply text-lg md:text-xl font-bold text-[#111827];
+    @apply text-lg md:text-2xl font-bold text-[#111827];
   }
 }
