@@ -1,3 +1,5 @@
+import { URLSearchParams } from "url";
+
 export function getPreviousPage(currentPage: number): number | undefined {
   if (currentPage === 1) return;
   return currentPage - 1;
@@ -11,4 +13,14 @@ export function getNextPage(
 
   if (targetPage <= pageCount) return targetPage;
   return;
+}
+
+export function getSearchParams(searchParams: URLSearchParams): object {
+  let searchParamsObject: { [key: string]: string } = {};
+
+  searchParams.forEach((value, key) => {
+    searchParamsObject[key] = value;
+  });
+
+  return searchParamsObject;
 }

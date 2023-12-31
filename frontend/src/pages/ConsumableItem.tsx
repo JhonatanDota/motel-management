@@ -17,7 +17,11 @@ import { getConsumableItems } from "../requests/ConsumableItemRequests";
 import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton";
 import Pagination from "../components/pagination/Pagination";
 import { PaginationModel } from "../models/RequestModel";
-import { getNextPage, getPreviousPage } from "../functions/pagination";
+import {
+  getNextPage,
+  getPreviousPage,
+  getSearchParams,
+} from "../functions/pagination";
 
 export default function ConsumableItem() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,7 +33,7 @@ export default function ConsumableItem() {
     []
   );
 
-  const [params, setParams] = useState<object>(searchParams);
+  const [params, setParams] = useState<object>(getSearchParams(searchParams));
   const [previousPage, setPreviousPage] = useState<number>();
   const [nextPage, setNextPage] = useState<number>();
 
