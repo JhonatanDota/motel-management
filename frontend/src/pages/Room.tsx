@@ -7,6 +7,9 @@ import DropDownAnimation from "../components/commom/DropDownAnimation";
 import AddContainer from "../components/commom/AddContainer";
 import AddRoom from "../components/room/AddRoom";
 import RoomModel from "../models/RoomModel";
+import EditCollapse from "../components/commom/EditCollapse";
+import EditContainer from "../components/commom/EditContainer";
+import EditContent from "../components/commom/EditContent";
 
 export default function Room() {
   const [openAdd, setOpenAdd] = useState<boolean>(false);
@@ -30,6 +33,23 @@ export default function Room() {
             <AddRoom onAdd={onAdd} />
           </AddContainer>
         </DropDownAnimation>
+        <EditContainer>
+          {rooms.map(
+            (room: RoomModel, index: number) => (
+              <EditCollapse key={room.id} title={room.number}>
+                <EditContainer>
+                  <EditContent>
+                    {/* <EditConsumableItem
+                      consumableItem={consumableItem}
+                      index={index}
+                      onEdit={onEdit}
+                    /> */}
+                  </EditContent>
+                </EditContainer>
+              </EditCollapse>
+            )
+          )}
+        </EditContainer>
       </PageContainer>
     </>
   );

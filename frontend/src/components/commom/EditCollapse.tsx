@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCaretUp } from "react-icons/fa6";
 
 type CollapseProps = {
-  title: string;
+  title: string | number;
   children: ReactNode;
 };
 

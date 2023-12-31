@@ -27,7 +27,7 @@ export default function InputsRoom(props: InputsRoomProps) {
       hour_value: hourValue,
       type: type,
     };
-
+    
     onSubmit(data);
 
     if (toResetFields) resetFields();
