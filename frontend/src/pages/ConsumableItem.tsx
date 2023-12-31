@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { PaginationModel } from "../models/RequestModel";
 import ConsumableItemModel from "../models/ConsumableItemModel";
 import PageContainer from "../components/pages/PageContainer";
 import PageTitle from "../components/pages/PageTitle";
@@ -16,8 +16,12 @@ import EditConsumableItem from "../components/consumableItem/EditConsumableItem"
 import { getConsumableItems } from "../requests/ConsumableItemRequests";
 import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton";
 import Pagination from "../components/pagination/Pagination";
+import { PaginationModel } from "../models/RequestModel";
+import { getNextPage, getPreviousPage } from "../functions/pagination";
 
 export default function ConsumableItem() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [openAdd, setOpenAdd] = useState<boolean>(false);
   const [isFetching, setIsFetching] = useState<boolean>(true);
 
@@ -25,28 +29,25 @@ export default function ConsumableItem() {
     []
   );
 
-  async function fetchConsumableItems(
-    params?: object
-  ): Promise<PaginationModel> {
-    let pagination: PaginationModel;
+  const [params, setParams] = useState<object>(searchParams);
+  const [previousPage, setPreviousPage] = useState<number>();
+  const [nextPage, setNextPage] = useState<number>();
 
+  async function fetchConsumableItems() {
     try {
       const response = await getConsumableItems(params);
+      const pagination: PaginationModel = response.data.meta.pagination;
       const results: ConsumableItemModel[] = response.data.results;
 
-      pagination = {
-        links: response.data.links,
-        pages: response.data.meta.pagination,
-      };
+      setPreviousPage(getPreviousPage(pagination.page));
+      setNextPage(getNextPage(pagination.page, pagination.pages));
 
       setConsumableItems(results);
     } catch (error) {
-      throw new Error("Unable to fetch pagination: "); //TODO: Add best tratative;
+      //TODO: add best tratative
     } finally {
       setIsFetching(false);
     }
-
-    return pagination;
   }
 
   function onAdd(addedConsumableItem: ConsumableItemModel) {
@@ -63,6 +64,10 @@ export default function ConsumableItem() {
 
     toast.success("Item Atualizado");
   }
+
+  useEffect(() => {
+    fetchConsumableItems();
+  }, [params]);
 
   return (
     <>
@@ -99,7 +104,13 @@ export default function ConsumableItem() {
             )
           )}
         </EditContainer>
-        <Pagination requestFunc={fetchConsumableItems} />
+        <Pagination
+          previousPage={previousPage}
+          nextPage={nextPage}
+          params={params}
+          setParams={setParams}
+          setSearchParams={setSearchParams}
+        />
       </PageContainer>
     </>
   );

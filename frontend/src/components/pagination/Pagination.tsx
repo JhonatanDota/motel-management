@@ -1,42 +1,28 @@
-import { useEffect, useState } from "react";
-import { PaginationModel } from "../../models/RequestModel";
-import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { SetURLSearchParams } from 'react-router-dom';
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 
 type PaginationProps = {
-  requestFunc: (params?: object) => Promise<PaginationModel>;
+  previousPage?: number;
+  nextPage?: number;
   params?: object;
+  setParams: (params: object) => void;
+  setSearchParams: SetURLSearchParams;
 };
 
 export default function Pagination(props: PaginationProps) {
-  const { requestFunc } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { previousPage, nextPage, params, setParams, setSearchParams } = props;
 
-  const [nextPage, setNextPage] = useState<number>();
-  const [previousPage, setPreviousPage] = useState<number>();
+  function handleChangePage(page: number) {
+    setParams({ ...params, "page[number]": page });
+  }
 
   useEffect(() => {
-    handleChangePage(searchParams.get("page") ?? 1);
-  }, []);
-
-  async function handleChangePage(page: number | string) {
-    const pagination: PaginationModel = await requestFunc({
-      "page[number]": page,
-    });
-    const currentPage: number = pagination.pages.page;
-    const pageTotalCount: number = pagination.pages.pages;
-
-    setPreviousPage(currentPage > 1 ? currentPage - 1 : undefined);
-
-    setNextPage(
-      currentPage + 1 <= pageTotalCount ? currentPage + 1 : undefined
-    );
-
-    if (currentPage) setSearchParams({ page: currentPage.toString() });
-  }
+    setSearchParams({ ...params });
+  }, [params]);
 
   return (
     <div className="flex justify-around w-full">

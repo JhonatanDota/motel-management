@@ -1,11 +1,11 @@
-export interface Pagination {
+export interface PaginationModel {
   page: number;
   pages: number;
   count: number;
 }
 
 export interface Meta {
-  pagination: Pagination;
+  pagination: PaginationModel;
 }
 
 export interface Links {
@@ -13,11 +13,6 @@ export interface Links {
   last: string;
   next: string | null;
   prev: string | null;
-}
-
-export interface PaginationModel {
-  links: Links;
-  pages: Pagination;
 }
 
 export interface ApiResponseList<T> {
