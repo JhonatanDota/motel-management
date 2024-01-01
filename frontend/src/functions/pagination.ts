@@ -15,6 +15,15 @@ export function getNextPage(
   return;
 }
 
+export function getCurrentPage(
+  searchParams: URLSearchParams
+): number | undefined {
+  const pageKey: string = "page[number]";
+  const findedPage: string | null = searchParams.get(pageKey);
+
+  return findedPage ? Number(findedPage) : undefined;
+}
+
 export function getSearchParams(searchParams: URLSearchParams): object {
   let searchParamsObject: { [key: string]: string } = {};
 
@@ -23,4 +32,11 @@ export function getSearchParams(searchParams: URLSearchParams): object {
   });
 
   return searchParamsObject;
+}
+
+export function getSearchParamByKey(
+  key: string,
+  searchParams: URLSearchParams
+): string {
+  return searchParams.get(key) ?? "";
 }

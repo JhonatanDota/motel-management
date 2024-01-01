@@ -31,11 +31,12 @@ export async function editConsumableItem(
 }
 
 export async function getConsumableItems(
-  params?: object
+  params?: object,
+  page?: number
 ): Promise<AxiosResponse<ApiResponseList<ConsumableItemModel>>> {
   const response = await axios.get<ApiResponseList<ConsumableItemModel>>(
     CONSUMABLE_ITEMS_URL,
-    { params }
+    { params: { ...params, "page[number]": page } }
   );
 
   return response;

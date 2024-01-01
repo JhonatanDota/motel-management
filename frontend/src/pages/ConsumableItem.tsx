@@ -18,15 +18,19 @@ import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton"
 import Pagination from "../components/pagination/Pagination";
 import { PaginationModel } from "../models/RequestModel";
 import {
+  getCurrentPage,
   getNextPage,
   getPreviousPage,
+  getSearchParamByKey,
   getSearchParams,
 } from "../functions/pagination";
+import FiltersConsumableItem from "../components/consumableItem/FiltersConsumableItem";
 
 export default function ConsumableItem() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [openAdd, setOpenAdd] = useState<boolean>(false);
+  const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [isFetching, setIsFetching] = useState<boolean>(true);
 
   const [consumableItems, setConsumableItems] = useState<ConsumableItemModel[]>(
@@ -34,12 +38,16 @@ export default function ConsumableItem() {
   );
 
   const [params, setParams] = useState<object>(getSearchParams(searchParams));
+
+  const [currentPage, setCurrentPage] = useState<number | undefined>(
+    getCurrentPage(searchParams)
+  );
   const [previousPage, setPreviousPage] = useState<number>();
   const [nextPage, setNextPage] = useState<number>();
 
   async function fetchConsumableItems() {
     try {
-      const response = await getConsumableItems(params);
+      const response = await getConsumableItems(params, currentPage);
       const pagination: PaginationModel = response.data.meta.pagination;
       const results: ConsumableItemModel[] = response.data.results;
 
@@ -70,8 +78,13 @@ export default function ConsumableItem() {
   }
 
   useEffect(() => {
+    setSearchParams({
+      ...params,
+      ...(currentPage && { "page[number]": currentPage.toString() }),
+    });
+
     fetchConsumableItems();
-  }, [params]);
+  }, [currentPage, params]);
 
   return (
     <>
@@ -84,6 +97,13 @@ export default function ConsumableItem() {
             <AddConsumableItem onAdd={onAdd} />
           </AddContainer>
         </DropDownAnimation>
+        <FiltersConsumableItem
+          isOpen={openFilter}
+          setIsOpen={setOpenFilter}
+          params={params}
+          setParams={setParams}
+          searchParams={searchParams}
+        />
         <EditContainer>
           {isFetching ? (
             <EditContainerSkeleton />
@@ -109,11 +129,9 @@ export default function ConsumableItem() {
           )}
         </EditContainer>
         <Pagination
+          setCurrentPage={setCurrentPage}
           previousPage={previousPage}
           nextPage={nextPage}
-          params={params}
-          setParams={setParams}
-          setSearchParams={setSearchParams}
         />
       </PageContainer>
     </>

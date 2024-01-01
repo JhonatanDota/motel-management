@@ -1,28 +1,20 @@
-import { useEffect } from "react";
-import { SetURLSearchParams } from 'react-router-dom';
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 
 type PaginationProps = {
+  setCurrentPage: (page: number) => void;
   previousPage?: number;
   nextPage?: number;
-  params?: object;
-  setParams: (params: object) => void;
-  setSearchParams: SetURLSearchParams;
 };
 
 export default function Pagination(props: PaginationProps) {
-  const { previousPage, nextPage, params, setParams, setSearchParams } = props;
+  const { setCurrentPage, previousPage, nextPage } = props;
 
   function handleChangePage(page: number) {
-    setParams({ ...params, "page[number]": page });
+    setCurrentPage(page);
   }
-
-  useEffect(() => {
-    setSearchParams({ ...params });
-  }, [params]);
 
   return (
     <div className="flex justify-around w-full">
