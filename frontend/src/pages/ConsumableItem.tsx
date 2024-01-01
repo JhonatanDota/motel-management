@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import ConsumableItemModel from "../models/ConsumableItemModel";
@@ -21,7 +21,6 @@ import {
   getCurrentPage,
   getNextPage,
   getPreviousPage,
-  getSearchParamByKey,
   getSearchParams,
 } from "../functions/pagination";
 import FiltersConsumableItem from "../components/consumableItem/FiltersConsumableItem";
@@ -44,6 +43,8 @@ export default function ConsumableItem() {
   );
   const [previousPage, setPreviousPage] = useState<number>();
   const [nextPage, setNextPage] = useState<number>();
+
+  const prevParamsRef = useRef(params);
 
   async function fetchConsumableItems() {
     try {
@@ -78,6 +79,12 @@ export default function ConsumableItem() {
   }
 
   useEffect(() => {
+    if (prevParamsRef.current !== params) {
+      setCurrentPage(undefined);
+    }
+
+    prevParamsRef.current = params;
+
     setSearchParams({
       ...params,
       ...(currentPage && { "page[number]": currentPage.toString() }),
