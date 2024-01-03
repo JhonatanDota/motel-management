@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { IconType } from "react-icons";
-import { Tooltip } from "react-tooltip";
 
 type MenuItemProps = {
   route: string;
@@ -44,16 +43,6 @@ export default function MenuItem(props: MenuItemProps) {
           {title}
         </p>
       </NavLink>
-      {!isMenuOpen && (
-        <Tooltip
-          id="menu-tooltip"
-          place="left"
-          delayShow={20}
-          delayHide={20}
-          opacity={0.5}
-          style={{ backgroundColor: "#F64E2B", fontWeight: "bold" }}
-        />
-      )}
     </>
   );
 }

@@ -27,6 +27,7 @@ export default function FiltersConsumableItem(
   return (
     <FilterContainer isOpen={isOpen} setIsOpen={setIsOpen}>
       <FormTextInput label="Nome" value={name} setValue={setName} />
+
     </FilterContainer>
   );
 }

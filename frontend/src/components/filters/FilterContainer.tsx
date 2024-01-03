@@ -12,12 +12,12 @@ export default function FilterContainer(props: FilterProps) {
   const { isOpen, setIsOpen, children } = props;
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#F64E2B]">
       <div
-        className="flex justify-between py-2 px-4 md:py-4 md:px-6 bg-[#F64E2B] cursor-pointer"
+        className="flex justify-between py-2 px-4 md:py-4 md:px-6 cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-base md:text-2xl text-[#111827] font-bold">
+        <h3 className="text-base md:text-2xl text-white font-bold">
           Filtros
         </h3>
         <button
@@ -29,7 +29,7 @@ export default function FilterContainer(props: FilterProps) {
         </button>
       </div>
       <DropDownAnimation isOpen={isOpen} heightValue="auto">
-        <div className="p-3">{children}</div>
+        <div className="flex flex-col p-3">{children}</div>
       </DropDownAnimation>
     </div>
   );

@@ -4,6 +4,7 @@
 
 body {
   background: rgb(233, 232, 232);
+  overflow-y: scroll;
 }
 
 @layer components {

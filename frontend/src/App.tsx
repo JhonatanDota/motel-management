@@ -4,11 +4,14 @@ import AppRoutes from "./AppRoutes";
 import Menu from "./components/menu/Menu";
 
 function App() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
 
   function handleWindowSizeChange(): void {
-    setIsMobile(window.innerWidth <= 768);
+    const isMobile: boolean = window.innerWidth <= 768;
+
+    setIsMobile(isMobile);
+    setIsOpen(!isMobile);
   }
 
   useEffect(() => {
