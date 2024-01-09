@@ -12,9 +12,7 @@ import EditContainer from "../components/commom/EditContainer";
 import EditCollapse from "../components/commom/EditCollapse";
 import EditContent from "../components/commom/EditContent";
 import EditConsumableItem from "../components/consumableItem/EditConsumableItem";
-
 import { getConsumableItems } from "../requests/consumableItemRequests";
-import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton";
 import Pagination from "../components/pagination/Pagination";
 import { PaginationModel } from "../models/RequestModel";
 import {
@@ -30,7 +28,6 @@ export default function ConsumableItem() {
 
   const [openAdd, setOpenAdd] = useState<boolean>(false);
   const [openFilter, setOpenFilter] = useState<boolean>(false);
-  const [isFetching, setIsFetching] = useState<boolean>(true);
 
   const [consumableItems, setConsumableItems] = useState<ConsumableItemModel[]>(
     []
@@ -58,8 +55,6 @@ export default function ConsumableItem() {
       setConsumableItems(results);
     } catch (error) {
       //TODO: add best tratative
-    } finally {
-      setIsFetching(false);
     }
   }
 
@@ -112,26 +107,19 @@ export default function ConsumableItem() {
           searchParams={searchParams}
         />
         <EditContainer>
-          {isFetching ? (
-            <EditContainerSkeleton />
-          ) : (
-            consumableItems.map(
-              (consumableItem: ConsumableItemModel, index: number) => (
-                <EditCollapse
-                  key={consumableItem.id}
-                  title={consumableItem.name}
-                >
-                  <EditContainer>
-                    <EditContent>
-                      <EditConsumableItem
-                        consumableItem={consumableItem}
-                        index={index}
-                        onEdit={onEdit}
-                      />
-                    </EditContent>
-                  </EditContainer>
-                </EditCollapse>
-              )
+          {consumableItems.map(
+            (consumableItem: ConsumableItemModel, index: number) => (
+              <EditCollapse key={consumableItem.id} title={consumableItem.name}>
+                <EditContainer>
+                  <EditContent>
+                    <EditConsumableItem
+                      consumableItem={consumableItem}
+                      index={index}
+                      onEdit={onEdit}
+                    />
+                  </EditContent>
+                </EditContainer>
+              </EditCollapse>
             )
           )}
         </EditContainer>
