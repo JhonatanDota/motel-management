@@ -22,3 +22,4 @@ class ConsumableItemViewSet(viewsets.ModelViewSet):
 class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all().order_by("number")
     serializer_class = RoomSerializer
+    filter_backends = (filters.DjangoFilterBackend,)

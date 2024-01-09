@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator
 
 
 class Room(Model):
-    number = models.IntegerField()
+    number = models.IntegerField(unique=True)
     hour_value = models.FloatField(validators=[MinValueValidator(0.0)])
     type = models.CharField(choices=RoomTypeEnum.choices, max_length=6)
 

@@ -1,7 +1,7 @@
 import ConsumableItemModel, {
   ConsumableItemWithoutIdModel,
 } from "../../models/ConsumableItemModel";
-import { editConsumableItem } from "../../requests/ConsumableItemRequests";
+import { editConsumableItem } from "../../requests/consumableItemRequests";
 import ConsumableItemValidations from "../../validations/consumableItemValidations";
 import InputsConsumableItem from "./InputsConsumableItem";
 import SubmitButton from "../commom/SubmitButton";

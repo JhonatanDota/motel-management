@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputsRoom from "./InputsRoom";
 import SubmitButton from "../commom/SubmitButton";
 import RoomModel, { RoomWithoutIdModel } from "../../models/RoomModel";
-import { addRoom } from "../../requests/RoomRequests";
+import { addRoom } from "../../requests/roomRequests";
 
 type AddRoomProps = {
   onAdd: (addedRoom: RoomModel) => void;

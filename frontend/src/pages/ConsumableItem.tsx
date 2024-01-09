@@ -13,7 +13,7 @@ import EditCollapse from "../components/commom/EditCollapse";
 import EditContent from "../components/commom/EditContent";
 import EditConsumableItem from "../components/consumableItem/EditConsumableItem";
 
-import { getConsumableItems } from "../requests/ConsumableItemRequests";
+import { getConsumableItems } from "../requests/consumableItemRequests";
 import EditContainerSkeleton from "../components/skeleton/EditContainerSkeleton";
 import Pagination from "../components/pagination/Pagination";
 import { PaginationModel } from "../models/RequestModel";

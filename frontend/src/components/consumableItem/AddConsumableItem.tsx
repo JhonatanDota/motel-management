@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addConsumableItem } from "../../requests/ConsumableItemRequests";
+import { addConsumableItem } from "../../requests/consumableItemRequests";
 import ConsumableItemModel, {
   ConsumableItemWithoutIdModel,
 } from "../../models/ConsumableItemModel";
