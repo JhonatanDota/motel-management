@@ -1,9 +1,9 @@
+import PageContainer from "./pages/PageContainer";
+import PageTitle from "./pages/PageTitle";
 export default function Welcome() {
   return (
-    <div>
-      <h1 className="text-center text-3xl text-[#111827] font-bold">
-        Motel Management
-      </h1>
-    </div>
+    <PageContainer>
+      <PageTitle title="Motel Management" />
+    </PageContainer>
   );
 }
