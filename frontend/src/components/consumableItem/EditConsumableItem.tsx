@@ -2,9 +2,9 @@ import ConsumableItemModel, {
   ConsumableItemWithoutIdModel,
 } from "../../models/ConsumableItemModel";
 import { editConsumableItem } from "../../requests/consumableItemRequests";
-import ConsumableItemValidations from "../../validations/consumableItemValidations";
 import InputsConsumableItem from "./InputsConsumableItem";
 import SubmitButton from "../commom/SubmitButton";
+import { handleErrors } from "../../requests/handleErrors";
 
 type EditConsumableItemProps = {
   consumableItem: ConsumableItemModel;
@@ -23,18 +23,12 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
       );
 
       onEdit(index, response.data);
-    } catch {
-      //TODO: Make tratatives
+    } catch (error) {
+      handleErrors(error);
     }
   }
 
   function handleEdit(data: ConsumableItemWithoutIdModel): void {
-    const validator: ConsumableItemValidations = new ConsumableItemValidations(
-      data
-    );
-
-    if (validator.validateData() === false) return;
-
     edit({ id: consumableItem.id, ...data });
   }
 
@@ -46,7 +40,10 @@ export default function EditConsumableItem(props: EditConsumableItemProps) {
         disableSubmit={false}
         toResetFields={false}
         submitButton={
-          <SubmitButton text="Editar" extraClasses="bg-[#ebc934] text-white w-full mt-2" />
+          <SubmitButton
+            text="Editar"
+            extraClasses="bg-[#ebc934] text-white w-full mt-2"
+          />
         }
       />
     </>

@@ -18,6 +18,7 @@ import RoomModel from "../models/RoomModel";
 import EditCollapse from "../components/commom/EditCollapse";
 import EditContainer from "../components/commom/EditContainer";
 import EditContent from "../components/commom/EditContent";
+import EditRoom from "../components/room/EditRoom";
 
 export default function Room() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -74,11 +75,11 @@ export default function Room() {
             <EditCollapse key={room.id} title={room.number}>
               <EditContainer>
                 <EditContent>
-                  {/* <EditConsumableItem
-                      consumableItem={consumableItem}
+                  <EditRoom
+                      room={room}
                       index={index}
-                      onEdit={onEdit}
-                    /> */}
+                      // onEdit={onEdit}
+                    />
                 </EditContent>
               </EditContainer>
             </EditCollapse>

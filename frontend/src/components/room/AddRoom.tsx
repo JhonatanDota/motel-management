@@ -3,6 +3,7 @@ import InputsRoom from "./InputsRoom";
 import SubmitButton from "../commom/SubmitButton";
 import RoomModel, { RoomWithoutIdModel } from "../../models/RoomModel";
 import { addRoom } from "../../requests/roomRequests";
+import { handleErrors } from "../../requests/handleErrors";
 
 type AddRoomProps = {
   onAdd: (addedRoom: RoomModel) => void;
@@ -13,15 +14,16 @@ export default function AddRoom(props: AddRoomProps) {
 
   const [isAdding, setIsAdding] = useState<boolean>(false);
 
-  async function add(data: RoomWithoutIdModel) {
+  async function add(data: RoomWithoutIdModel, onSuccess: () => void) {
     setIsAdding(true);
 
     try {
       const response = await addRoom(data);
 
       onAdd(response.data);
-    } catch (error) {
-      //TODO: Make tratatives
+      onSuccess();
+    } catch (err) {
+      handleErrors(err);
     } finally {
       setIsAdding(false);
     }

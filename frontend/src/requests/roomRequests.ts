@@ -26,3 +26,16 @@ export async function getRooms(
 
   return response;
 }
+
+export async function editRoom(
+  id: number,
+  data: RoomModel
+) {
+  const response = await axios.patch(`${ROOM_URL}${id}/`, data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return response;
+}

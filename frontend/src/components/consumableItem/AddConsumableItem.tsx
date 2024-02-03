@@ -5,6 +5,7 @@ import ConsumableItemModel, {
 } from "../../models/ConsumableItemModel";
 import InputsConsumableItem from "./InputsConsumableItem";
 import SubmitButton from "../commom/SubmitButton";
+import { handleErrors } from "../../requests/handleErrors";
 
 type AddConsumableItemProps = {
   onAdd: (addedConsumableItem: ConsumableItemModel) => void;
@@ -23,7 +24,7 @@ export default function AddConsumableItem(props: AddConsumableItemProps) {
 
       onAdd(response.data);
     } catch (error) {
-      //TODO: Make tratatives
+      handleErrors(error);
     } finally {
       setIsAdding(false);
     }

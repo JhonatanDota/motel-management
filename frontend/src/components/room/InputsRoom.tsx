@@ -5,11 +5,12 @@ import ConfirmActionButton from "../commom/ConfirmActionButton";
 import { RoomWithoutIdModel } from "../../models/RoomModel";
 import FormSelect from "../commom/FormSelect";
 import { RoomTypeEnum } from "../../data/RoomData";
+import RoomValidations from "../../validations/roomValidations";
 
 type InputsRoomProps = {
   room?: RoomWithoutIdModel;
   submitButton: ReactNode;
-  onSubmit: (room: RoomWithoutIdModel) => void;
+  onSubmit: (room: RoomWithoutIdModel, onSuccess: () => void) => void;
   disableSubmit: boolean;
   toResetFields: boolean;
 };
@@ -27,10 +28,14 @@ export default function InputsRoom(props: InputsRoomProps) {
       hour_value: hourValue,
       type: type,
     };
-    
-    onSubmit(data);
 
-    if (toResetFields) resetFields();
+    const validator: RoomValidations = new RoomValidations(data);
+
+    if (validator.validateData() === false) return;
+
+    onSubmit(data, () => {
+      if (toResetFields) resetFields();
+    });
   }
 
   function resetFields(): void {
